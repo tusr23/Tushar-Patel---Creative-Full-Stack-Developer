@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!--=============== FAVICON ===============-->
+   <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+   <!--=============== CSS ===============-->
+   <link rel="stylesheet" href="assets/css/styles.css">
+
+   <title>Tushar Patel — Creative Full Stack Developer</title>
+</head>
+
+<body>
+   <!-- CUSTOM CURSOR -->
+   <div class="cursor" id="cursor"></div>
+   <div class="cursor-dot" id="cursor-dot"></div>
+
+   <!--==================== HEADER ====================-->
+   <header class="header" id="header">
+      <nav class="nav container">
+         <a href="#" class="nav__logo">Tushar</a>
+
+         <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+               <li class="nav__item">
+                  <a href="#about" class="nav__link">About Us</a>
+               </li>
+               <li class="nav__item">
+                  <a href="#projects" class="nav__link">Projects</a>
+               </li>
+               <li class="nav__item">
+                  <a href="#contact" class="nav__link">Contact</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+   </header>
+
+   <!--==================== MAIN ====================-->
+   <main class="main">
+      <!--==================== HOME ====================-->
+      <section class="home section" id="home">
+         <!-- Ambient Blobs -->
+         <div class="blob home__blob-top"></div>
+         <div class="blob home__blob-bg"></div>
+
+         <div class="home__container container">
+            <!-- Left Info -->
+            <div class="home__data-left">
+               <h3 class="home__greeting">Hello, I'm</h3>
+               <h1 class="home__name">Tushar <br> <span class="home__surname">Patel</span></h1>
+            </div>
+
+            <!-- Center Image Profile -->
+            <div class="home__image-container">
+               <div class="home__blob"></div>
+               <img src="assets/img/tushar-perfil.png" alt="Tushar Patel" class="home__img">
+            </div>
+
+            <!-- Right Info -->
+            <div class="home__data-right">
+               <h3 class="home__split">Creative</h3>
+               <h2 class="home__profession">
+                  <span class="home__profession-1">Full Stack</span>
+                  <span class="home__profession-2">Developer</span>
+               </h2>
+            </div>
+
+            <!-- Bottom Left Social -->
+            <div class="home__social">
+               <a href="https://www.linkedin.com/in/tusr23/" target="_blank" rel="noopener noreferrer"
+                  class="home__social-link" aria-label="LinkedIn">
+                  <i class="ri-linkedin-box-line"></i>
+               </a>
+               <a href="https://github.com/tusr23" target="_blank" rel="noopener noreferrer" class="home__social-link"
+                  aria-label="GitHub">
+                  <i class="ri-github-line"></i>
+               </a>
+            </div>
+
+            <!-- Bottom Right Resume Link -->
+            <div class="home__cv">
+               <a href="assets/pdf/Tushar-cv.pdf" target="_blank" class="home__cv-link">
+                  <span>RESUME</span>
+                  <i class="ri-article-line"></i>
+               </a>
+            </div>
+         </div>
+      </section>
+
+      <!--==================== ABOUT ====================-->
+      <section class="about section" id="about">
+         <h2 class="section__title">
+            <span>Creativity</span> <br> Is My Passion
+         </h2>
+
+         <div class="about__container container grid">
+            <div class="about__image-container">
+               <div class="blob about__blob"></div>
+               <img src="assets/img/tushar-about.png" alt="About Tushar" class="about__img">
+            </div>
+
+            <div class="about__data">
+               <p class="about__description">
+                  I'm a <b>Full Stack (MERN) Developer</b> passionate about building modern, scalable, and user-friendly
+                  web applications. Driven by learning and curiosity, I enjoy turning ideas into interactive digital
+                  experiences while continuously exploring new <b>technologies, development practices, and creative
+                     solutions.</b> Always eager to learn, experiment, and grow as a developer.
+               </p>
+
+               <a href="assets/pdf/Tushar-cv.pdf" target="_blank" class="button about__button">
+                  <span>Resume</span>
+                  <i class="ri-arrow-right-up-line"></i>
+               </a>
+            </div>
+         </div>
+      </section>
+
+      <!--==================== PROJECTS ====================-->
+      <section class="projects section" id="projects">
+         <h2 class="section__title">
+            I Make Incredible <br> <span>Projects</span>
+         </h2>
+
+         <div class="projects__container">
+            <div class="projects__track" id="projects-track">
+               <!-- Project 1 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">01</span>
+                        <span class="projects__subtitle">Web</span>
+                     </div>
+
+                     <h3 class="projects__title">Modern Analog <br> Clock</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript, requestAnimationFrame.</p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-1.png" alt="Modern Analog Clock" class="projects__img">
+                     <a href="https://github.com/tusr23/analog-clock" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+
+               <!-- Project 2 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">02</span>
+                        <span class="projects__subtitle">App</span>
+                     </div>
+
+                     <h3 class="projects__title">TaskMaster — Smart <br> Task Manager</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript, LocalStorage &amp; Category Filters.</p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-2.png" alt="TaskMaster Smart Task Manager" class="projects__img">
+                     <a href="https://github.com/tusr23/taskmaster" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+
+               <!-- Project 3 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">03</span>
+                        <span class="projects__subtitle">Web</span>
+                     </div>
+
+                     <h3 class="projects__title">Digital Scientific <br> Calculator</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript &amp; Scientific Calculation Engine.</p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-3.png" alt="Digital Scientific Calculator" class="projects__img">
+                     <a href="https://github.com/tusr23/Digital-Calculator" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+
+               <!-- Project 4 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">04</span>
+                        <span class="projects__subtitle">App</span>
+                     </div>
+
+                     <h3 class="projects__title">Precision <br> Stopwatch</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript &amp; High-Precision Chronograph Timer.
+                     </p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-4.png" alt="Precision Stopwatch" class="projects__img">
+                     <a href="https://github.com/tusr23/Stop-Watch" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+
+               <!-- Project 5 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">05</span>
+                        <span class="projects__subtitle">Web</span>
+                     </div>
+
+                     <h3 class="projects__title">Modern Login &amp; <br> Sign Up Form</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript, Theme Switcher &amp; Password Strength.
+                     </p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-5.png" alt="Modern Login and Sign Up Form" class="projects__img">
+                     <a href="https://github.com/tusr23/Login-Sign-Up-Form" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+
+               <!-- Project 6 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">06</span>
+                        <span class="projects__subtitle">Web</span>
+                     </div>
+
+                     <h3 class="projects__title">Amazon Clone — <br> E-Commerce Store</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript, Cart System &amp; Product Filtering.</p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-6.png" alt="Amazon Clone E-Commerce Store" class="projects__img">
+                     <a href="https://github.com/tusr23/Amazon-Clone" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+
+               <!-- Project 7 -->
+               <article class="projects__card">
+                  <div class="projects__content">
+                     <div class="projects__header">
+                        <span class="projects__number">07</span>
+                        <span class="projects__subtitle">Web</span>
+                     </div>
+
+                     <h3 class="projects__title">Spotify Web <br> Player Clone</h3>
+                     <span class="projects__tech-label">Technologies used</span>
+                     <p class="projects__description">HTML5, CSS3, JavaScript, Web Audio API &amp; Music Playlists.</p>
+                  </div>
+
+                  <div class="projects__image-wrapper">
+                     <img src="assets/img/projects-7.png" alt="Spotify Web Player Clone" class="projects__img">
+                     <a href="https://github.com/tusr23/Spotify-Clone" target="_blank" rel="noopener noreferrer"
+                        class="projects__link" aria-label="View on GitHub">
+                        <i class="ri-arrow-right-up-line"></i>
+                     </a>
+                  </div>
+               </article>
+            </div>
+         </div>
+
+         <!-- Navigation Buttons -->
+         <div class="projects__buttons">
+            <button class="projects__button" id="projects-prev" aria-label="Previous Projects">
+               <i class="ri-arrow-left-s-line"></i>
+            </button>
+            <button class="projects__all-btn" id="projects-view-all" aria-label="View All Projects">
+               <i class="ri-layout-grid-line"></i>
+               <span>All</span>
+            </button>
+            <button class="projects__button" id="projects-next" aria-label="Next Projects">
+               <i class="ri-arrow-right-s-line"></i>
+            </button>
+         </div>
+      </section>
+
+      <!--==================== WORK ====================-->
+      <section class="work section" id="work">
+         <h2 class="section__title">
+            <span>My</span> <br> Education &amp; Certification
+         </h2>
+
+         <!-- Tabs Buttons -->
+         <div class="work__tabs-container">
+            <div class="work__tabs">
+               <button class="work__button active-tab" data-target="#education">
+                  <span>Education</span>
+                  <i class="ri-graduation-cap-line"></i>
+               </button>
+               <button class="work__button" data-target="#certification">
+                  <span>Certification</span>
+                  <i class="ri-award-line"></i>
+               </button>
+            </div>
+         </div>
+
+         <div class="work__container container">
+            <div class="blob work__blob"></div>
+
+            <!-- Education Content -->
+            <div class="work__content active-content" id="education" data-content>
+               <div class="work__timeline">
+                  <!-- Central glowing beam -->
+                  <div class="work__line"></div>
+
+                  <!-- Item 1 (Left) -->
+                  <div class="work__item work__item--left">
+                     <div class="work__marker">
+                        <i class="ri-graduation-cap-fill"></i>
+                     </div>
+                     <div class="work__card">
+                        <div class="work__card-header">
+                           <span class="work__badge"><i class="ri-calendar-line"></i> 2024 - 2027</span>
+                           <span class="work__tag">Pursuing</span>
+                        </div>
+                        <h3 class="work__title">Bachelor of Technology</h3>
+                        <div class="work__subtitle">
+                           <i class="ri-computer-line"></i> Computer Science and Engineering
+                        </div>
+                        <p class="work__description">
+                           Core studies in Software Engineering, Data Structures, Web Technologies, Database Systems,
+                           and Object-Oriented Programming.
+                        </p>
+                        <div class="work__institute">
+                           <i class="ri-building-4-line"></i> Centurion University of Technology and Management,
+                           Bhubaneswar
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Item 2 (Right) -->
+                  <div class="work__item work__item--right">
+                     <div class="work__marker">
+                        <i class="ri-book-open-fill"></i>
+                     </div>
+                     <div class="work__card">
+                        <div class="work__card-header">
+                           <span class="work__badge"><i class="ri-calendar-line"></i> 2022</span>
+                           <span class="work__tag">Completed</span>
+                        </div>
+                        <h3 class="work__title">Higher Secondary Education (12th)</h3>
+                        <div class="work__subtitle">
+                           <i class="ri-flask-line"></i> Science &amp; Mathematics
+                        </div>
+                        <p class="work__description">
+                           Completed higher secondary education focusing on Mathematics, Physics, and Computer Science
+                           fundamentals.
+                        </p>
+                        <div class="work__institute">
+                           <i class="ri-school-line"></i> Vikash Higher Secondary School, Bargarh
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- Item 3 (Left) -->
+                  <div class="work__item work__item--left">
+                     <div class="work__marker">
+                        <i class="ri-school-fill"></i>
+                     </div>
+                     <div class="work__card">
+                        <div class="work__card-header">
+                           <span class="work__badge"><i class="ri-calendar-line"></i> 2020</span>
+                           <span class="work__tag">Completed</span>
+                        </div>
+                        <h3 class="work__title">Secondary School Examination (10th)</h3>
+                        <div class="work__subtitle">
+                           <i class="ri-building-line"></i> High School
+                        </div>
+                        <p class="work__description">
+                           Completed secondary schooling with strong academic performance and foundational knowledge in
+                           basic sciences and computing.
+                        </p>
+                        <div class="work__institute">
+                           <i class="ri-school-line"></i> Panchayat (Govt) High School, Kandapala
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Certification Content -->
+            <div class="work__content" id="certification" data-content>
+               <div class="work__timeline">
+                  <!-- Central glowing beam -->
+                  <div class="work__line"></div>
+
+                  <!-- Item 1: GeeksforGeeks (2026) -->
+                  <div class="work__item work__item--left">
+                     <div class="work__marker">
+                        <i class="ri-code-s-slash-fill"></i>
+                     </div>
+                     <div class="work__card">
+                        <div class="work__card-header">
+                           <span class="work__badge"><i class="ri-calendar-line"></i> 2026</span>
+                           <span class="work__tag">Certified</span>
+                        </div>
+                        <h3 class="work__title">Campus Training &amp; Java (DSA)</h3>
+                        <div class="work__subtitle">
+                           <i class="ri-terminal-box-line"></i> GeeksforGeeks
+                        </div>
+                        <p class="work__description">
+                           Comprehensive training program covering core data structures, algorithms, backend system
+                           fundamentals, and software development practices.
+                        </p>
+                        <a href="https://media.geeksforgeeks.org/courses/certificates/bb14ceb06527955853f9324a76ad9ef0.pdf"
+                           target="_blank" rel="noopener noreferrer" class="work__link-btn">
+                           <span>View Certificate</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+
+                  <!-- Item 2: Neo4j (2025) -->
+                  <div class="work__item work__item--right">
+                     <div class="work__marker">
+                        <i class="ri-database-2-fill"></i>
+                     </div>
+                     <div class="work__card">
+                        <div class="work__card-header">
+                           <span class="work__badge"><i class="ri-calendar-line"></i> 2025</span>
+                           <span class="work__tag">Certified</span>
+                        </div>
+                        <h3 class="work__title">Neo4j Certified Professional</h3>
+                        <div class="work__subtitle">
+                           <i class="ri-server-line"></i> Neo4j GraphAcademy
+                        </div>
+                        <p class="work__description">
+                           Official professional certification in Graph Database Architecture, Cypher Query Language,
+                           Graph Data Modeling, and high-performance database optimization.
+                        </p>
+                        <a href="https://graphacademy.neo4j.com/c/d5362cc1-2b76-4119-b319-fce7ddc4443c" target="_blank"
+                           rel="noopener noreferrer" class="work__link-btn">
+                           <span>View Certificate</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+
+                  <!-- Item 3: NPTEL (IIT Madras - 2025) -->
+                  <div class="work__item work__item--left">
+                     <div class="work__marker">
+                        <i class="ri-line-chart-fill"></i>
+                     </div>
+                     <div class="work__card">
+                        <div class="work__card-header">
+                           <span class="work__badge"><i class="ri-calendar-line"></i> 2025</span>
+                           <span class="work__tag">Certified</span>
+                        </div>
+                        <h3 class="work__title">Python for Data Science</h3>
+                        <div class="work__subtitle">
+                           <i class="ri-award-line"></i> NPTEL &bull; IIT Madras
+                        </div>
+                        <p class="work__description">
+                           Completed elite NPTEL certification in Python for Data Science, covering data analysis,
+                           NumPy, Pandas, data visualization, and computational problem-solving.
+                        </p>
+                        <a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM1/Ecertificates/106/noc25-cs60/Course/NPTEL25CS60S44160056701209182.pdf"
+                           target="_blank" rel="noopener noreferrer" class="work__link-btn">
+                           <span>View Certificate</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!--==================== SERVICES ====================-->
+      <section class="services section" id="services">
+         <h2 class="section__title">
+            What I <span>Offer</span>
+         </h2>
+
+         <div class="services__container container grid">
+            <!-- Service 1: Frontend -->
+            <div class="services__card services__card-1">
+               <div class="services__blob services__blob-1"></div>
+
+               <div class="services__header">
+                  <h3 class="services__title">Frontend</h3>
+               </div>
+
+               <p class="services__description">
+                  Designing and developing responsive, pixel-perfect, and modern interactive user interfaces with clean
+                  architecture and smooth animations.
+               </p>
+
+               <div class="services__skills-box">
+                  <span class="services__subtitle">Skills &amp; Technologies</span>
+                  <div class="services__skills">
+                     <span class="services__tag">HTML5</span>
+                     <span class="services__tag">CSS3</span>
+                     <span class="services__tag">JavaScript</span>
+                     <span class="services__tag">React.js</span>
+                     <span class="services__tag">Tailwind CSS</span>
+                     <span class="services__tag">Bootstrap</span>
+                  </div>
+               </div>
+
+               <div class="services__button">
+                  <i class="ri-arrow-down-s-line"></i>
+               </div>
+            </div>
+
+            <!-- Service 2: Backend -->
+            <div class="services__card services__card-2">
+               <div class="services__blob services__blob-2"></div>
+
+               <div class="services__header">
+                  <h3 class="services__title">Backend</h3>
+               </div>
+
+               <p class="services__description">
+                  Building robust, secure, and scalable server-side systems, RESTful APIs, database architectures, and
+                  authentication workflows.
+               </p>
+
+               <div class="services__skills-box">
+                  <span class="services__subtitle">Skills &amp; Technologies</span>
+                  <div class="services__skills">
+                     <span class="services__tag">Node.js</span>
+                     <span class="services__tag">Express.js</span>
+                     <span class="services__tag">MongoDB</span>
+                     <span class="services__tag">REST APIs</span>
+                     <span class="services__tag">SQL</span>
+                  </div>
+               </div>
+
+               <div class="services__button">
+                  <i class="ri-arrow-down-s-line"></i>
+               </div>
+            </div>
+
+            <!-- Service 3: Tools -->
+            <div class="services__card services__card-3">
+               <div class="services__blob services__blob-3"></div>
+
+               <div class="services__header">
+                  <h3 class="services__title">Tools</h3>
+               </div>
+
+               <p class="services__description">
+                  Utilizing modern industry developer tooling for version control, API testing, debugging, and
+                  continuous cloud deployment pipelines.
+               </p>
+
+               <div class="services__skills-box">
+                  <span class="services__subtitle">Skills &amp; Technologies</span>
+                  <div class="services__skills">
+                     <span class="services__tag">Git</span>
+                     <span class="services__tag">GitHub</span>
+                     <span class="services__tag">VS Code</span>
+                     <span class="services__tag">Postman</span>
+                     <span class="services__tag">Vercel</span>
+                     <span class="services__tag">Netlify</span>
+                     <span class="services__tag">Figma</span>
+                  </div>
+               </div>
+
+               <div class="services__button">
+                  <i class="ri-arrow-down-s-line"></i>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!--==================== CONTACT ====================-->
+      <section class="contact section" id="contact">
+         <div class="contact__container container">
+            <!-- Top Box -->
+            <div class="contact__box">
+               <h2 class="contact__title-main">Contact Me</h2>
+               <p class="contact__description">Tell me about your next project.</p>
+
+               <button class="button contact__button" id="contact-button" data-email="tusharpatel20050523@gmail.com">
+                  <i class="ri-file-copy-line"></i>
+                  <span>Copy email</span>
+                  <span class="contact__tooltip" id="contact-tooltip">Copied!</span>
+               </button>
+            </div>
+
+            <!-- Bottom Grid Links -->
+            <div class="contact__data grid">
+               <!-- Col 1: Location & Phone -->
+               <div class="contact__group">
+                  <div class="contact__item">
+                     <h3 class="contact__subtitle">Location</h3>
+                     <span class="contact__text">Bargarh, Odisha, India</span>
+                  </div>
+
+                  <div class="contact__item">
+                     <h3 class="contact__subtitle">Postal Code</h3>
+                     <span class="contact__text">768045</span>
+                  </div>
+               </div>
+
+               <!-- Col 2: Social Media -->
+               <div class="contact__group">
+                  <h3 class="contact__subtitle">Social Media</h3>
+                  <ul class="contact__links">
+                     <li>
+                        <a href="https://www.linkedin.com/in/tusr23/" target="_blank" rel="noopener noreferrer"
+                           class="contact__link">
+                           <span>Linkedin</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://github.com/tusr23" target="_blank" rel="noopener noreferrer"
+                           class="contact__link">
+                           <span>Github</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tusharpatel20050523@gmail.com"
+                           target="_blank" rel="noopener noreferrer" class="contact__link">
+                           <span>Gmail</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+
+               <!-- Col 3: Write Me & We'll Talk -->
+               <div class="contact__group">
+                  <h3 class="contact__subtitle">Write Me &amp; We'll Talk</h3>
+                  <ul class="contact__links">
+                     <li>
+                        <a href="https://wa.me/917848092392?text=Hi%20Tushar%2C%20I%20checked%20out%20your%20Portfolio%20and%20wanted%20to%20connect%20with%20you!"
+                           target="_blank" rel="noopener noreferrer" class="contact__link">
+                           <span>WhatsApp</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://x.com/tusr_ptel" target="_blank" rel="noopener noreferrer"
+                           class="contact__link">
+                           <span>X</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="https://www.instagram.com/tusr.ptel" target="_blank" rel="noopener noreferrer"
+                           class="contact__link">
+                           <span>Instagram</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <!--==================== FOOTER ====================-->
+   <footer class="footer">
+      <div class="footer__container container">
+         <span class="footer__copy">
+            All Rights Reserved By <a href="https://www.linkedin.com/in/tusr23/" target="_blank"
+               rel="noopener noreferrer">Tushar</a>
+         </span>
+         <span class="footer__year">
+            &#169; <span id="current-year">2025</span>
+         </span>
+      </div>
+   </footer>
+
+   <!--==================== ALL PROJECTS POPUP MODAL ====================-->
+   <div class="projects__modal" id="projects-modal" role="dialog" aria-modal="true"
+      aria-labelledby="projects-modal-title" aria-hidden="true">
+      <div class="projects__modal-overlay" id="projects-modal-overlay"></div>
+
+      <div class="projects__modal-container">
+         <!-- Ambient Glow Blobs -->
+         <div class="projects__modal-blob projects__modal-blob--1"></div>
+         <div class="projects__modal-blob projects__modal-blob--2"></div>
+
+         <!-- Modal Header -->
+         <div class="projects__modal-header">
+            <div class="projects__modal-head-left">
+               <span class="projects__modal-tag">
+                  <i class="ri-sparkling-fill"></i> Showcase Gallery
+               </span>
+               <h2 class="projects__modal-title" id="projects-modal-title">
+                  All <span>Projects</span>
+               </h2>
+               <p class="projects__modal-desc">
+                  Browse through all completed web applications, tools &amp; full stack creations.
+               </p>
+            </div>
+
+            <div class="projects__modal-head-right">
+               <!-- Category Filters -->
+               <div class="projects__modal-filters" role="tablist" aria-label="Filter projects">
+                  <button class="projects__modal-filter active" data-filter="all">
+                     All <span class="projects__filter-count">7</span>
+                  </button>
+                  <button class="projects__modal-filter" data-filter="web">
+                     Web <span class="projects__filter-count">5</span>
+                  </button>
+                  <button class="projects__modal-filter" data-filter="app">
+                     App <span class="projects__filter-count">2</span>
+                  </button>
+               </div>
+
+               <!-- Close Button -->
+               <button class="projects__modal-close" id="projects-modal-close" aria-label="Close modal">
+                  <i class="ri-close-line"></i>
+                  <span class="projects__modal-close-hint">Esc</span>
+               </button>
+            </div>
+         </div>
+
+         <!-- Modal Body (Cards Grid) -->
+         <div class="projects__modal-body">
+            <div class="projects__modal-grid" id="projects-modal-grid">
+               <!-- Project 1 -->
+               <article class="projects__modal-card" data-category="web" style="--card-index: 1;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-1.png" alt="Modern Analog Clock" class="projects__modal-img"
+                        loading="lazy">
+                     <span class="projects__modal-badge">Web</span>
+                     <span class="projects__modal-number">01</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">Modern Analog Clock</h3>
+                     <p class="projects__modal-card-desc">Interactive analog clock with smooth continuous second hand
+                        motion, dynamic theme shifts, and custom aesthetics.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Animation</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/analog-clock" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 2 -->
+               <article class="projects__modal-card" data-category="app" style="--card-index: 2;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-2.png" alt="TaskMaster Smart Task Manager"
+                        class="projects__modal-img" loading="lazy">
+                     <span class="projects__modal-badge">App</span>
+                     <span class="projects__modal-number">02</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">TaskMaster — Smart Task Manager</h3>
+                     <p class="projects__modal-card-desc">Modern productivity web app featuring category-based
+                        filtering, local storage persistence, and sleek task workflows.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>LocalStorage</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/taskmaster" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 3 -->
+               <article class="projects__modal-card" data-category="web" style="--card-index: 3;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-3.png" alt="Digital Scientific Calculator"
+                        class="projects__modal-img" loading="lazy">
+                     <span class="projects__modal-badge">Web</span>
+                     <span class="projects__modal-number">03</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">Digital Scientific Calculator</h3>
+                     <p class="projects__modal-card-desc">Comprehensive scientific calculation engine with complex
+                        operations, responsive numeric keypad, and glassmorphic UI.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Math Engine</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/Digital-Calculator" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 4 -->
+               <article class="projects__modal-card" data-category="app" style="--card-index: 4;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-4.png" alt="Precision Stopwatch" class="projects__modal-img"
+                        loading="lazy">
+                     <span class="projects__modal-badge">App</span>
+                     <span class="projects__modal-number">04</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">Precision Stopwatch</h3>
+                     <p class="projects__modal-card-desc">High-precision chronograph timer with millisecond accuracy,
+                        lap recording tracking, and neon digital display.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Chronograph</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/Stop-Watch" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 5 -->
+               <article class="projects__modal-card" data-category="web" style="--card-index: 5;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-5.png" alt="Modern Login &amp; Sign Up Form"
+                        class="projects__modal-img" loading="lazy">
+                     <span class="projects__modal-badge">Web</span>
+                     <span class="projects__modal-number">05</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">Modern Login &amp; Sign Up Form</h3>
+                     <p class="projects__modal-card-desc">Animated authentication interface featuring real-time password
+                        strength validation, smooth toggle, and modern styling.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Validation</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/Login-Sign-Up-Form" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 6 -->
+               <article class="projects__modal-card" data-category="web" style="--card-index: 6;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-6.png" alt="Amazon Clone E-Commerce Store"
+                        class="projects__modal-img" loading="lazy">
+                     <span class="projects__modal-badge">Web</span>
+                     <span class="projects__modal-number">06</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">Amazon Clone — E-Commerce Store</h3>
+                     <p class="projects__modal-card-desc">Interactive e-commerce shopping experience with product
+                        listings, dynamic cart calculation, and responsive layout.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Cart System</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/Amazon-Clone" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 7 -->
+               <article class="projects__modal-card" data-category="web" style="--card-index: 7;">
+                  <div class="projects__modal-img-wrap">
+                     <img src="assets/img/projects-7.png" alt="Spotify Web Player Clone" class="projects__modal-img"
+                        loading="lazy">
+                     <span class="projects__modal-badge">Web</span>
+                     <span class="projects__modal-number">07</span>
+                  </div>
+                  <div class="projects__modal-card-content">
+                     <h3 class="projects__modal-card-title">Spotify Web Player Clone</h3>
+                     <p class="projects__modal-card-desc">Music streaming web player clone utilizing the Web Audio API,
+                        playlist navigation, progress scrubber, and sleek dark UI.</p>
+                     <div class="projects__modal-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Web Audio</span>
+                     </div>
+                     <div class="projects__modal-card-footer">
+                        <a href="https://github.com/tusr23/Spotify-Clone" target="_blank" rel="noopener noreferrer"
+                           class="projects__modal-action">
+                           <span>GitHub Repo</span>
+                           <i class="ri-arrow-right-up-line"></i>
+                        </a>
+                     </div>
+                  </div>
+               </article>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!--=============== ANIME JS ===============-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+   <!--=============== SCROLLREVEAL ===============-->
+   <script src="assets/js/scrollreveal.min.js"></script>
+
+   <!--=============== MAIN JS ===============-->
+   <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
