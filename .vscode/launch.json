@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Portfolio (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "file": "${workspaceFolder}/index.html",
+      "urlFilter": "*localhost*|*127.0.0.1*|file:///*",
+      "skipFiles": [
+        "**/node_modules/**",
+        "https://**",
+        "http://**"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**",
+        "!https://**",
+        "!http://**"
+      ]
+    },
+    {
+      "name": "Launch Portfolio (Edge)",
+      "type": "msedge",
+      "request": "launch",
+      "file": "${workspaceFolder}/index.html",
+      "urlFilter": "*localhost*|*127.0.0.1*|file:///*",
+      "skipFiles": [
+        "**/node_modules/**",
+        "https://**",
+        "http://**"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**",
+        "!https://**",
+        "!http://**"
+      ]
+    }
+  ]
+}

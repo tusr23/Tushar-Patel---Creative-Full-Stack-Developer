@@ -1,0 +1,8 @@
+{
+  "debug.javascript.sourceMapLoader": "disabled",
+  "debug.javascript.resourceSourceMapLocations": {
+    "https://**": false,
+    "http://**": false,
+    "**/node_modules/**": false
+  }
+}
