@@ -554,7 +554,7 @@
          });
       }, { passive: true });
 
-      /*=============== CUSTOM CURSOR ===============*/
+            /*=============== CUSTOM CURSOR ===============*/
       const cursor = document.getElementById('cursor');
       const cursorDot = document.getElementById('cursor-dot');
 
@@ -604,7 +604,7 @@
          });
 
          const isInteractive = (target) => {
-            return target && target.closest && target.closest('a, button, .problem-card, .ps-image-card, .feature-item, .metric-card, .challenge-card, .next-project-card, .calc-btn');
+            return target && target.closest && target.closest('a, button, input, textarea, select, .problem-card, .ps-image-card, .feature-item, .metric-card, .challenge-card, .next-project-card, .case-nav-btn, .case-directory__link, .calc-btn, .sw-btn, .auth-tab-btn, .auth-submit-btn, .amz-add-btn, .amz-qty-btn, .sp-play-btn, .sp-ctrl-btn, .sp-heart-btn, .sp-progress-bar');
          };
 
          document.addEventListener('mouseover', (e) => {
@@ -618,6 +618,9 @@
                cursor.classList.remove('hovered');
             }
          });
+
+         document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+         document.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
       }
    </script>
 </body>
