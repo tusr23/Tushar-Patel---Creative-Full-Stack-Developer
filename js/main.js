@@ -64,11 +64,11 @@ const projectsPrev = document.getElementById('projects-prev');
 const projectsNext = document.getElementById('projects-next');
 
 if (projectsContainer && projectsTrack) {
-   // Duplicate cards to make continuous infinite marquee scroll seamless
-   projectsTrack.innerHTML += projectsTrack.innerHTML;
    let isPaused = false;
    let pauseTimeout = null;
-   const scrollSpeed = 0.8;
+   let scrollDirection = 1; // 1 = scroll forward (1 -> 7), -1 = scroll backward (7 -> 1)
+   const scrollSpeed = 0.9; // Smooth continuous scroll speed in px per frame
+
    const pauseTemporarily = (duration = 2000) => {
       isPaused = true;
       if (pauseTimeout) clearTimeout(pauseTimeout);
@@ -76,45 +76,72 @@ if (projectsContainer && projectsTrack) {
          isPaused = false;
       }, duration);
    };
+
    projectsContainer.addEventListener('mouseenter', () => isPaused = true);
    projectsContainer.addEventListener('mouseleave', () => isPaused = false);
    projectsContainer.addEventListener('touchstart', () => isPaused = true, { passive: true });
    projectsContainer.addEventListener('touchend', () => pauseTemporarily(1800), { passive: true });
-   function stepProjectsMarquee() {
+
+   function stepProjectsAutoScroll() {
       if (!isPaused) {
-         projectsContainer.scrollLeft += scrollSpeed;
-         const halfWidth = projectsTrack.scrollWidth / 2;
-         if (projectsContainer.scrollLeft >= halfWidth) {
-            projectsContainer.scrollLeft = 0;
+         const maxScroll = Math.max(0, projectsTrack.scrollWidth - projectsContainer.clientWidth);
+
+         if (maxScroll > 0) {
+            if (scrollDirection === 1) {
+               // Scrolling forward towards the last project
+               projectsContainer.scrollLeft += scrollSpeed;
+
+               if (projectsContainer.scrollLeft >= maxScroll - 1) {
+                  // Reached the last project! Pause, then reverse direction towards first
+                  projectsContainer.scrollLeft = maxScroll;
+                  scrollDirection = -1;
+                  pauseTemporarily(2000); // 2 second pause when reaching last project
+               }
+            } else {
+               // Scrolling backward from last project to first project
+               projectsContainer.scrollLeft -= scrollSpeed;
+
+               if (projectsContainer.scrollLeft <= 1) {
+                  // Reached the first project! Pause, then reverse direction forward again
+                  projectsContainer.scrollLeft = 0;
+                  scrollDirection = 1;
+                  pauseTemporarily(2000); // 2 second pause when reaching first project, then repeat
+               }
+            }
          }
       }
-      requestAnimationFrame(stepProjectsMarquee);
+      requestAnimationFrame(stepProjectsAutoScroll);
    }
-   requestAnimationFrame(stepProjectsMarquee);
+
+   requestAnimationFrame(stepProjectsAutoScroll);
+
    const getCardScrollStep = () => {
       const card = projectsTrack.querySelector('.projects__card');
       const trackStyle = window.getComputedStyle(projectsTrack);
       const gap = parseFloat(trackStyle.gap) || 24;
       return (card ? card.offsetWidth : 300) + gap;
    };
+
    if (projectsPrev) {
       projectsPrev.addEventListener('click', () => {
          pauseTemporarily(2500);
-         const halfWidth = projectsTrack.scrollWidth / 2;
-         if (projectsContainer.scrollLeft <= 10) {
-            projectsContainer.scrollLeft += halfWidth;
+         const step = getCardScrollStep();
+         projectsContainer.scrollBy({ left: -step, behavior: 'smooth' });
+         if (projectsContainer.scrollLeft - step <= 10) {
+            scrollDirection = 1;
          }
-         projectsContainer.scrollBy({ left: -getCardScrollStep(), behavior: 'smooth' });
       });
    }
+
    if (projectsNext) {
       projectsNext.addEventListener('click', () => {
          pauseTemporarily(2500);
-         const halfWidth = projectsTrack.scrollWidth / 2;
-         if (projectsContainer.scrollLeft >= halfWidth - 10) {
-            projectsContainer.scrollLeft -= halfWidth;
+         const maxScroll = projectsTrack.scrollWidth - projectsContainer.clientWidth;
+         const step = getCardScrollStep();
+         projectsContainer.scrollBy({ left: step, behavior: 'smooth' });
+         if (projectsContainer.scrollLeft + step >= maxScroll - 10) {
+            scrollDirection = -1;
          }
-         projectsContainer.scrollBy({ left: getCardScrollStep(), behavior: 'smooth' });
       });
    }
 

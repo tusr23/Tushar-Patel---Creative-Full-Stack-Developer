@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!--=============== FAVICON ===============-->
+   <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+   <!--=============== GOOGLE FONTS & MAIN CSS ===============-->
+   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./css/project-detail.css">
+
+   <title>TaskMaster — Case Study | Tushar Patel</title>
+   <meta name="description"
+      content="Comprehensive case study of TaskMaster: a high-efficiency, offline-first productivity app with real-time LocalStorage synchronization built by Tushar Patel.">
+</head>
+
+<body class="case-study-page">
+   <!-- CUSTOM CURSOR -->
+   <div class="cursor" id="cursor"></div>
+   <div class="cursor-dot" id="cursor-dot"></div>
+
+   <!-- Ambient Glowing Background Elements -->
+   <div class="case__glow case__glow--top-left"></div>
+   <div class="case__glow case__glow--top-right"></div>
+   <div class="case__glow case__glow--mid"></div>
+
+   <!--==================== HEADER & NAV ====================-->
+   <header class="case__header" id="case-header">
+      <div class="case__nav container">
+         <a href="index.html#projects" class="case__back-btn" id="case-back-btn">
+            <i class="ri-arrow-left-line"></i>
+            <span>Back to Projects</span>
+         </a>
+
+         <a href="index.html" class="case__brand">Tushar</a>
+
+         <div class="case__nav-actions">
+            <div class="case__status-pill">
+               <span class="dot"></span>
+               <span>Available for work</span>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <!--==================== HERO SECTION ====================-->
+   <section class="case-hero" id="overview">
+      <div class="container">
+         <div class="case-hero__content">
+            <span class="case-hero__eyebrow">
+               <i class="ri-checkbox-circle-line"></i>
+               SMART PRODUCTIVITY &bull; LOCAL STORAGE ENGINE
+            </span>
+
+            <div class="case-hero__title-row">
+               <h1 class="case-hero__title">TaskMaster — Smart Task Manager</h1>
+               <span class="case-hero__version-badge">v1.0</span>
+            </div>
+
+            <p class="case-hero__desc">
+               A high-performance, distraction-free productivity web application. Engineered with client-first
+               LocalStorage persistence, dynamic category filtering, live progress telemetry, and responsive Neumorphic
+               dark aesthetics with zero third-party dependencies.
+            </p>
+
+            <div class="case-hero__buttons">
+               <a href="https://analog-clock-delta-vert.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--primary">
+                  <span>Visit TaskMaster</span>
+                  <i class="ri-arrow-right-up-line"></i>
+               </a>
+               <a href="https://github.com/tusr23/taskmaster" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--secondary">
+                  <i class="ri-code-s-slash-line"></i>
+                  <span>Source Code</span>
+               </a>
+               <a href="#showcase" class="case-btn case-btn--secondary">
+                  <span>Interactive Engine</span>
+                  <i class="ri-arrow-down-line"></i>
+               </a>
+            </div>
+         </div>
+
+         <!-- Interactive Hero Showcase -->
+         <div class="case-hero__showcase" id="showcase">
+            <!-- Left Live Mini TaskMaster Widget -->
+            <div class="live-task-card">
+               <div class="task-preview__header">
+                  <span class="task-preview__title">Today's Focus</span>
+                  <span class="task-preview__badge" id="task-count-badge">2 of 3 completed</span>
+               </div>
+
+               <!-- Live Progress Bar -->
+               <div class="task-preview__progress-wrap">
+                  <div class="task-preview__progress-text">
+                     <span>Task Completion Rate</span>
+                     <span id="task-progress-pct">67%</span>
+                  </div>
+                  <div class="task-preview__progress-bar">
+                     <div class="task-preview__progress-fill" id="task-progress-fill" style="width: 67%;"></div>
+                  </div>
+               </div>
+
+               <!-- Quick Add Form -->
+               <form class="task-preview__input-box" id="mini-task-form">
+                  <input type="text" class="task-preview__input" id="mini-task-input"
+                     placeholder="Add quick task (e.g. Code Review)..." autocomplete="off" required>
+                  <button type="submit" class="task-preview__add-btn" aria-label="Add Task">
+                     <i class="ri-add-line"></i>
+                  </button>
+               </form>
+
+               <!-- Task Items List -->
+               <div class="task-preview__list" id="mini-task-list">
+                  <div class="task-item-row completed">
+                     <div class="task-item-left">
+                        <input type="checkbox" class="task-checkbox" checked>
+                        <span class="task-text">Architect LocalStorage state pipeline</span>
+                     </div>
+                     <span class="task-item-tag">Dev</span>
+                  </div>
+                  <div class="task-item-row completed">
+                     <div class="task-item-left">
+                        <input type="checkbox" class="task-checkbox" checked>
+                        <span class="task-text">Design category filter telemetry</span>
+                     </div>
+                     <span class="task-item-tag">UI/UX</span>
+                  </div>
+                  <div class="task-item-row">
+                     <div class="task-item-left">
+                        <input type="checkbox" class="task-checkbox">
+                        <span class="task-text">Ship production bundle to Vercel</span>
+                     </div>
+                     <span class="task-item-tag">Deploy</span>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Right Showcase Mockup Preview -->
+            <div class="case-hero__img-wrap">
+               <img src="assets/img/projects-2.png" alt="TaskMaster Interface Showcase" class="case-hero__img">
+               <span class="case-hero__img-tag">Aesthetic UI Preview</span>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--==================== MAIN CASE STUDY BODY ====================-->
+   <main class="case-main">
+      <div class="container case-layout">
+         <!-- Left Sticky Directory -->
+         <aside class="case-directory">
+            <h4 class="case-directory__heading">Directory</h4>
+            <nav class="case-directory__list">
+               <a href="#overview" class="case-directory__link active" data-section="overview">
+                  <span class="num">01</span>
+                  <span>Overview</span>
+               </a>
+               <a href="#problem-solution" class="case-directory__link" data-section="problem-solution">
+                  <span class="num">02</span>
+                  <span>The Problem &amp; Solution</span>
+               </a>
+               <a href="#task-ecosystem" class="case-directory__link" data-section="task-ecosystem">
+                  <span class="num">03</span>
+                  <span>Task Ecosystem &amp; Filters</span>
+               </a>
+               <a href="#zero-latency" class="case-directory__link" data-section="zero-latency">
+                  <span class="num">04</span>
+                  <span>Zero-Latency Storage</span>
+               </a>
+               <a href="#state-architecture" class="case-directory__link" data-section="state-architecture">
+                  <span class="num">05</span>
+                  <span>State Architecture</span>
+               </a>
+               <a href="#challenges" class="case-directory__link" data-section="challenges">
+                  <span class="num">06</span>
+                  <span>Challenges &amp; Learnings</span>
+               </a>
+            </nav>
+         </aside>
+
+         <!-- Right Detailed Content Sections -->
+         <div class="case-content">
+
+            <!-- SECTION 02: THE PROBLEM & SOLUTION -->
+            <section class="case-section" id="problem-solution">
+               <span class="case-section__num">01</span>
+               <h2 class="case-section__title">The Problem &amp; Solution</h2>
+
+               <div class="problem-solution-grid">
+                  <div class="ps-text-col">
+                     <!-- The Problem Card -->
+                     <div class="problem-card">
+                        <span class="problem-card__label">THE PROBLEM</span>
+                        <p class="problem-card__desc">
+                           Modern productivity apps are frequently bloated with compulsory cloud accounts, invasive
+                           trackers, slow synchronization latency, and paywalls for basic categorization. Users lose focus
+                           and struggle to maintain quick, confidential daily checklists without friction.
+                        </p>
+                     </div>
+
+                     <!-- The Solution Block -->
+                     <div class="solution-block">
+                        <span class="solution-block__label">THE SOLUTION</span>
+                        <h3 class="solution-block__title">Client-First Reactive State Persistence</h3>
+                        <p class="solution-block__desc">
+                           TaskMaster solves this with a zero-latency, privacy-first offline architecture. Leveraging the
+                           browser's synchronous <code>localStorage</code> API alongside a clean reactive event bus,
+                           tasks are stored, categorized, and queried entirely on-device without external server roundtrips,
+                           delivering instantaneous responsiveness.
+                        </p>
+                     </div>
+                  </div>
+
+                  <!-- Right Image Showcase Card -->
+                  <div class="ps-image-card">
+                     <div class="ps-image-card__header">
+                        <span class="ps-image-card__title">TASKMASTER</span>
+                        <span class="ps-image-card__badge">v1.0</span>
+                     </div>
+                     <img src="assets/img/taskmaster.png" alt="TaskMaster High Resolution Showcase"
+                        class="ps-image-card__img" loading="lazy">
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 03: TASK ECOSYSTEM & FILTERS -->
+            <section class="case-section" id="task-ecosystem">
+               <span class="case-section__num">02</span>
+               <h2 class="case-section__title">Task Ecosystem &amp; Category Filters</h2>
+
+               <div class="features-split-grid">
+                  <div class="features-image-wrap">
+                     <img src="assets/img/projects-2.png" alt="TaskMaster Key Features Showcase" loading="lazy">
+                  </div>
+
+                  <div class="features-list">
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-filter-3-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Dynamic Category Filtering</h4>
+                           <p>Filter active items by All, Work, Personal, and Completed tabs with live counter badges and
+                              zero layout reflow.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-pie-chart-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Real-Time Progress Telemetry</h4>
+                           <p>Visual completion telemetry with animated progress bar calculations updating optimistically
+                              on every interaction.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-keyboard-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Keyboard Accessibility &amp; Shortcuts</h4>
+                           <p>Full keyboard navigation support, instant Enter-to-create workflows, and accessibility tags
+                              for screen readers.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-flashlight-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Instantaneous DOM Reordering</h4>
+                           <p>Smooth list mutations powered by DocumentFragment batching that avoid full page repaints.</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 04: ZERO-LATENCY STORAGE & METRICS -->
+            <section class="case-section" id="zero-latency">
+               <span class="case-section__num">03</span>
+               <h2 class="case-section__title">Zero-Latency LocalStorage Engine</h2>
+
+               <div class="metrics-row">
+                  <div class="metric-card">
+                     <div class="metric-val">100</div>
+                     <div class="metric-label">Google Lighthouse Score</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">&lt; 3 ms</div>
+                     <div class="metric-label">State Persistence Latency</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">100%</div>
+                     <div class="metric-label">Offline Capability</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">0 KB</div>
+                     <div class="metric-label">External Dependencies</div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 05: TECHNICAL ARCHITECTURE -->
+            <section class="case-section" id="state-architecture">
+               <span class="case-section__num">04</span>
+               <h2 class="case-section__title">Reactive State Architecture &amp; Code</h2>
+
+               <div class="architecture-grid">
+                  <!-- Code Snippet Box -->
+                  <div class="code-snippet-box">
+                     <div class="code-snippet-header">
+                        <div class="code-snippet-dots">
+                           <span class="code-dot code-dot--red"></span>
+                           <span class="code-dot code-dot--yellow"></span>
+                           <span class="code-dot code-dot--green"></span>
+                        </div>
+                        <span class="code-snippet-filename">task-controller.js</span>
+                        <span>ES6+</span>
+                     </div>
+                     <pre class="code-snippet-body"><code><span class="comment">// Reactive Client-Side State Controller</span>
+<span class="kw">class</span> <span class="fn">TaskController</span> {
+  <span class="kw">constructor</span>(<span class="var">key</span> = <span class="num">'taskmaster_v1'</span>) {
+    <span class="kw">this</span>.key = <span class="var">key</span>;
+    <span class="kw">this</span>.tasks = JSON.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="var">key</span>)) || [];
+  }
+
+  <span class="fn">addTask</span>(<span class="var">title</span>, <span class="var">category</span> = <span class="num">'Work'</span>) {
+    <span class="kw">const</span> <span class="var">item</span> = {
+      id: crypto.<span class="fn">randomUUID</span>(),
+      title: <span class="var">title</span>.<span class="fn">trim</span>(),
+      category: <span class="var">category</span>,
+      completed: <span class="kw">false</span>,
+      timestamp: Date.<span class="fn">now</span>()
+    };
+    <span class="kw">this</span>.tasks.<span class="fn">unshift</span>(<span class="var">item</span>);
+    <span class="kw">this</span>.<span class="fn">persist</span>();
+    <span class="kw">return</span> <span class="var">item</span>;
+  }
+
+  <span class="fn">persist</span>() {
+    localStorage.<span class="fn">setItem</span>(<span class="kw">this</span>.key, JSON.<span class="fn">stringify</span>(<span class="kw">this</span>.tasks));
+  }
+}</code></pre>
+                  </div>
+
+                  <!-- Architectural Breakdown Cards -->
+                  <div class="arch-cards">
+                     <div class="arch-card">
+                        <h4>Single Source of Truth</h4>
+                        <p>State is centralized within an immutable in-memory array that serializes atomically to
+                           <code>localStorage</code> on mutations.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Event Delegation Pipeline</h4>
+                        <p>A single root listener on the task container handles checkbox toggles, edits, and deletions,
+                           maintaining minimal memory footprint.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Zero Latency &amp; Privacy</h4>
+                        <p>Zero tracking beacons or third-party cookies. All user data stays exclusively within the
+                           user's device sandbox.</p>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 06: CHALLENGES & LEARNINGS -->
+            <section class="case-section" id="challenges">
+               <span class="case-section__num">05</span>
+               <h2 class="case-section__title">Key Challenges &amp; Solutions</h2>
+
+               <div class="challenges-grid">
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 01</span>
+                     <h4>JSON Parsing Failures &amp; Corrupted State</h4>
+                     <p>
+                        Browsers can encounter syntax errors if storage strings are improperly truncated or modified by
+                        browser extensions.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Encapsulated all storage calls with a defensive schema validator and
+                        safe try/catch fallback defaults.
+                     </div>
+                  </div>
+
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 02</span>
+                     <h4>Repaint Churn on Rapid Category Switching</h4>
+                     <p>
+                        Filtering through dozens of DOM cards in real time can induce layout thrashing and stutter on
+                        lower-end mobile devices.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Applied CSS class-driven display toggles and <code>DocumentFragment</code>
+                        batching to ensure zero layout reflows.
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- CASE STUDY FOOTER / NAVIGATION -->
+            <footer class="case-footer">
+               <div class="case-footer__nav">
+                  <!-- Previous Project Button -->
+                  <a href="project-analog-clock.html" class="case-nav-btn case-nav-btn--prev">
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-left-line"></i>
+                     </div>
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Previous Project</span>
+                        <h3 class="case-nav-btn__title">Modern Analog Clock</h3>
+                     </div>
+                  </a>
+
+                  <!-- Next Project Button -->
+                  <a href="project-calculator.html" class="case-nav-btn case-nav-btn--next">
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Next Project</span>
+                        <h3 class="case-nav-btn__title">Digital Scientific Calculator</h3>
+                     </div>
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-right-line"></i>
+                     </div>
+                  </a>
+               </div>
+            </footer>
+
+         </div>
+      </div>
+   </main>
+
+   <!--=============== SCRIPTS ===============-->
+   <script>
+      /*=============== INTERACTIVE MINI TASKMASTER DEMO ===============*/
+      const taskForm = document.getElementById('mini-task-form');
+      const taskInput = document.getElementById('mini-task-input');
+      const taskList = document.getElementById('mini-task-list');
+      const taskCountBadge = document.getElementById('task-count-badge');
+      const progressFill = document.getElementById('task-progress-fill');
+      const progressPct = document.getElementById('task-progress-pct');
+
+      function updateTaskProgress() {
+         const items = taskList.querySelectorAll('.task-item-row');
+         const completed = taskList.querySelectorAll('.task-item-row.completed');
+         const total = items.length;
+         const done = completed.length;
+         const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+
+         if (taskCountBadge) {
+            taskCountBadge.textContent = `${done} of ${total} completed`;
+         }
+         if (progressFill) {
+            progressFill.style.width = `${pct}%`;
+         }
+         if (progressPct) {
+            progressPct.textContent = `${pct}%`;
+         }
+      }
+
+      if (taskList) {
+         taskList.addEventListener('change', (e) => {
+            if (e.target && e.target.classList.contains('task-checkbox')) {
+               const row = e.target.closest('.task-item-row');
+               if (row) {
+                  if (e.target.checked) {
+                     row.classList.add('completed');
+                  } else {
+                     row.classList.remove('completed');
+                  }
+                  updateTaskProgress();
+               }
+            }
+         });
+      }
+
+      if (taskForm && taskInput && taskList) {
+         taskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = taskInput.value.trim();
+            if (!text) return;
+
+            const row = document.createElement('div');
+            row.className = 'task-item-row';
+            row.innerHTML = `
+               <div class="task-item-left">
+                  <input type="checkbox" class="task-checkbox">
+                  <span class="task-text">${text}</span>
+               </div>
+               <span class="task-item-tag">Task</span>
+            `;
+            taskList.prepend(row);
+            taskInput.value = '';
+            updateTaskProgress();
+         });
+      }
+
+      /*=============== DIRECTORY STICKY SCROLLSPY ===============*/
+      const sections = document.querySelectorAll('.case-section, .case-hero');
+      const dirLinks = document.querySelectorAll('.case-directory__link');
+
+      window.addEventListener('scroll', () => {
+         let currentSection = 'overview';
+         const scrollPos = window.scrollY + 180;
+
+         sections.forEach(sec => {
+            const top = sec.offsetTop;
+            const height = sec.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+               currentSection = sec.getAttribute('id');
+            }
+         });
+
+         dirLinks.forEach(link => {
+            if (link.getAttribute('data-section') === currentSection) {
+               link.classList.add('active');
+            } else {
+               link.classList.remove('active');
+            }
+         });
+      }, { passive: true });
+
+      /*=============== CUSTOM CURSOR ===============*/
+      const cursor = document.getElementById('cursor');
+      const cursorDot = document.getElementById('cursor-dot');
+
+      if (cursor && cursorDot) {
+         let mouseX = window.innerWidth / 2;
+         let mouseY = window.innerHeight / 2;
+         let cursorX = mouseX;
+         let cursorY = mouseY;
+         let isFirstMove = true;
+         const TRAIL_SPEED = 0.08;
+
+         document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (isFirstMove) {
+               cursorX = mouseX;
+               cursorY = mouseY;
+               cursor.style.left = `${cursorX}px`;
+               cursor.style.top = `${cursorY}px`;
+               cursor.classList.add('visible');
+               cursorDot.classList.add('visible');
+               isFirstMove = false;
+            }
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+         });
+
+         const renderCursor = () => {
+            cursorX += (mouseX - cursorX) * TRAIL_SPEED;
+            cursorY += (mouseY - cursorY) * TRAIL_SPEED;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(renderCursor);
+         };
+         requestAnimationFrame(renderCursor);
+
+         document.addEventListener('mouseleave', () => {
+            cursor.classList.remove('visible');
+            cursorDot.classList.remove('visible');
+         });
+
+         document.addEventListener('mouseenter', () => {
+            if (!isFirstMove) {
+               cursor.classList.add('visible');
+               cursorDot.classList.add('visible');
+            }
+         });
+
+         const isInteractive = (target) => {
+            return target && target.closest && target.closest('a, button, .problem-card, .ps-image-card, .feature-item, .metric-card, .challenge-card, .next-project-card, .task-checkbox, .task-preview__input');
+         };
+
+         document.addEventListener('mouseover', (e) => {
+            if (isInteractive(e.target)) {
+               cursor.classList.add('hovered');
+            }
+         });
+
+         document.addEventListener('mouseout', (e) => {
+            if (isInteractive(e.target)) {
+               cursor.classList.remove('hovered');
+            }
+         });
+      }
+   </script>
+</body>
+
+</html>

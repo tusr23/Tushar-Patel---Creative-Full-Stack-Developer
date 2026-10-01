@@ -743,6 +743,9 @@ img {
   justify-content: space-between;
   transition: all 0.4s ease;
   backdrop-filter: blur(10px);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .projects__card:hover {

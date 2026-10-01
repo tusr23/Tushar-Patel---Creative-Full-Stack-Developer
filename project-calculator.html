@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!--=============== FAVICON ===============-->
+   <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+   <!--=============== GOOGLE FONTS & MAIN CSS ===============-->
+   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./css/project-detail.css">
+
+   <title>Digital Scientific Calculator — Case Study | Tushar Patel</title>
+   <meta name="description"
+      content="Comprehensive case study of Digital Scientific Calculator: a high-precision mathematical expression evaluation engine built by Tushar Patel.">
+</head>
+
+<body class="case-study-page">
+   <!-- CUSTOM CURSOR -->
+   <div class="cursor" id="cursor"></div>
+   <div class="cursor-dot" id="cursor-dot"></div>
+
+   <!-- Ambient Glowing Background Elements -->
+   <div class="case__glow case__glow--top-left"></div>
+   <div class="case__glow case__glow--top-right"></div>
+   <div class="case__glow case__glow--mid"></div>
+
+   <!--==================== HEADER & NAV ====================-->
+   <header class="case__header" id="case-header">
+      <div class="case__nav container">
+         <a href="index.html#projects" class="case__back-btn" id="case-back-btn">
+            <i class="ri-arrow-left-line"></i>
+            <span>Back to Projects</span>
+         </a>
+
+         <a href="index.html" class="case__brand">Tushar</a>
+
+         <div class="case__nav-actions">
+            <div class="case__status-pill">
+               <span class="dot"></span>
+               <span>Available for work</span>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <!--==================== HERO SECTION ====================-->
+   <section class="case-hero" id="overview">
+      <div class="container">
+         <div class="case-hero__content">
+            <span class="case-hero__eyebrow">
+               <i class="ri-calculator-line"></i>
+               MATHEMATICAL ENGINE &bull; SCIENTIFIC COMPUTATION
+            </span>
+
+            <div class="case-hero__title-row">
+               <h1 class="case-hero__title">Digital Scientific Calculator</h1>
+               <span class="case-hero__version-badge">v1.0</span>
+            </div>
+
+            <p class="case-hero__desc">
+               A precision digital scientific calculator engineered for complex mathematical computation. Features
+               trigonometric functions, logarithmic expressions, memory registers, safe precedence parsing, and an
+               ultra-responsive dark glassmorphism interface.
+            </p>
+
+            <div class="case-hero__buttons">
+               <a href="https://digital-calculator-tawny.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--primary">
+                  <span>Visit Digital Calculator</span>
+                  <i class="ri-arrow-right-up-line"></i>
+               </a>
+               <a href="https://github.com/tusr23/Digital-Calculator" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--secondary">
+                  <i class="ri-code-s-slash-line"></i>
+                  <span>Source Code</span>
+               </a>
+               <a href="#showcase" class="case-btn case-btn--secondary">
+                  <span>Interactive Engine</span>
+                  <i class="ri-arrow-down-line"></i>
+               </a>
+            </div>
+         </div>
+
+         <!-- Interactive Hero Showcase -->
+         <div class="case-hero__showcase" id="showcase">
+            <!-- Left Live Mini Scientific Calculator Widget -->
+            <div class="live-calc-card">
+               <div class="calc-display">
+                  <div class="calc-display__expr" id="calc-expr">&nbsp;</div>
+                  <div class="calc-display__val" id="calc-val">0</div>
+               </div>
+
+               <div class="calc-keypad" id="calc-keypad">
+                  <button class="calc-btn calc-btn--op" data-action="clear">C</button>
+                  <button class="calc-btn calc-btn--fn" data-insert="(">(</button>
+                  <button class="calc-btn calc-btn--fn" data-insert=")">)</button>
+                  <button class="calc-btn calc-btn--op" data-insert="/">÷</button>
+
+                  <button class="calc-btn calc-btn--fn" data-func="sin">sin</button>
+                  <button class="calc-btn calc-btn--fn" data-func="cos">cos</button>
+                  <button class="calc-btn calc-btn--fn" data-func="sqrt">√</button>
+                  <button class="calc-btn calc-btn--op" data-insert="*">×</button>
+
+                  <button class="calc-btn" data-insert="7">7</button>
+                  <button class="calc-btn" data-insert="8">8</button>
+                  <button class="calc-btn" data-insert="9">9</button>
+                  <button class="calc-btn calc-btn--op" data-insert="-">−</button>
+
+                  <button class="calc-btn" data-insert="4">4</button>
+                  <button class="calc-btn" data-insert="5">5</button>
+                  <button class="calc-btn" data-insert="6">6</button>
+                  <button class="calc-btn calc-btn--op" data-insert="+">+</button>
+
+                  <button class="calc-btn" data-insert="1">1</button>
+                  <button class="calc-btn" data-insert="2">2</button>
+                  <button class="calc-btn" data-insert="3">3</button>
+                  <button class="calc-btn calc-btn--eq" data-action="equals">=</button>
+
+                  <button class="calc-btn" data-insert="0">0</button>
+                  <button class="calc-btn" data-insert=".">.</button>
+                  <button class="calc-btn calc-btn--fn" data-func="pi">π</button>
+                  <button class="calc-btn calc-btn--op" data-action="backspace">⌫</button>
+               </div>
+            </div>
+
+            <!-- Right Showcase Mockup Preview -->
+            <div class="case-hero__img-wrap">
+               <img src="assets/img/projects-3.png" alt="Digital Scientific Calculator Showcase" class="case-hero__img">
+               <span class="case-hero__img-tag">Aesthetic UI Preview</span>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--==================== MAIN CASE STUDY BODY ====================-->
+   <main class="case-main">
+      <div class="container case-layout">
+         <!-- Left Sticky Directory -->
+         <aside class="case-directory">
+            <h4 class="case-directory__heading">Directory</h4>
+            <nav class="case-directory__list">
+               <a href="#overview" class="case-directory__link active" data-section="overview">
+                  <span class="num">01</span>
+                  <span>Overview</span>
+               </a>
+               <a href="#problem-solution" class="case-directory__link" data-section="problem-solution">
+                  <span class="num">02</span>
+                  <span>The Problem &amp; Solution</span>
+               </a>
+               <a href="#math-engine" class="case-directory__link" data-section="math-engine">
+                  <span class="num">03</span>
+                  <span>Math Engine &amp; Operations</span>
+               </a>
+               <a href="#precedence-parser" class="case-directory__link" data-section="precedence-parser">
+                  <span class="num">04</span>
+                  <span>Precedence Parser</span>
+               </a>
+               <a href="#metrics" class="case-directory__link" data-section="metrics">
+                  <span class="num">05</span>
+                  <span>Performance</span>
+               </a>
+               <a href="#challenges" class="case-directory__link" data-section="challenges">
+                  <span class="num">06</span>
+                  <span>Challenges &amp; Solutions</span>
+               </a>
+            </nav>
+         </aside>
+
+         <!-- Right Detailed Content Sections -->
+         <div class="case-content">
+
+            <!-- SECTION 02: THE PROBLEM & SOLUTION -->
+            <section class="case-section" id="problem-solution">
+               <span class="case-section__num">01</span>
+               <h2 class="case-section__title">The Problem &amp; Solution</h2>
+
+               <div class="problem-solution-grid">
+                  <div class="ps-text-col">
+                     <!-- The Problem Card -->
+                     <div class="problem-card">
+                        <span class="problem-card__label">THE PROBLEM</span>
+                        <p class="problem-card__desc">
+                           Many web calculator tutorials rely on vulnerable, un-sanitized <code>eval()</code> calls. This
+                           induces severe security vulnerabilities, produces notorious IEEE 754 floating-point artifacts
+                           (such as <code>0.1 + 0.2 = 0.30000000000000004</code>), and fails on complex nested parentheses
+                           and scientific functions.
+                        </p>
+                     </div>
+
+                     <!-- The Solution Block -->
+                     <div class="solution-block">
+                        <span class="solution-block__label">THE SOLUTION</span>
+                        <h3 class="solution-block__title">Lexical Tokenizer &amp; Precedence Parser</h3>
+                        <p class="solution-block__desc">
+                           Engineered a safe mathematical computation engine. Uses lexical tokenization to parse numeric
+                           operands, mathematical operators, and trigonometric functions into an expression AST.
+                           Stabilizes floating-point calculations with normalized epsilon rounding and supports nested
+                           sub-expressions with sub-millisecond execution.
+                        </p>
+                     </div>
+                  </div>
+
+                  <!-- Right Image Showcase Card -->
+                  <div class="ps-image-card">
+                     <div class="ps-image-card__header">
+                        <span class="ps-image-card__title">SCIENTIFIC CALCULATOR</span>
+                        <span class="ps-image-card__badge">v1.0</span>
+                     </div>
+                     <img src="assets/img/digital-calculator.png" alt="Digital Calculator High Resolution Showcase"
+                        class="ps-image-card__img" loading="lazy">
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 03: MATH ENGINE & OPERATIONS -->
+            <section class="case-section" id="math-engine">
+               <span class="case-section__num">02</span>
+               <h2 class="case-section__title">Math Engine &amp; Operations</h2>
+
+               <div class="features-split-grid">
+                  <div class="features-image-wrap">
+                     <img src="assets/img/projects-3.png" alt="Calculator Key Features Showcase" loading="lazy">
+                  </div>
+
+                  <div class="features-list">
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-function-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Trigonometric &amp; Exponential Suite</h4>
+                           <p>Integrated sine, cosine, tangent, square root, powers, and mathematical constants (π, e) with
+                              instant radian evaluation.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-scales-3-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Floating-Point Precision Sanitizer</h4>
+                           <p>Normalizes IEEE 754 precision errors by rounding calculations to 10 significant digits,
+                              guaranteeing accurate decimals.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-brackets-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Parentheses &amp; Order of Operations</h4>
+                           <p>Accurately parses nested parentheses and operator hierarchy (BODMAS/PEMDAS) for compound
+                              expressions.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-history-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Expression History &amp; Memory Registers</h4>
+                           <p>Dual display line preserves the active input formula while displaying running results with
+                              instant backspace correction.</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 04: PRECEDENCE PARSER -->
+            <section class="case-section" id="precedence-parser">
+               <span class="case-section__num">03</span>
+               <h2 class="case-section__title">Precedence Parser &amp; Code</h2>
+
+               <div class="architecture-grid">
+                  <!-- Code Snippet Box -->
+                  <div class="code-snippet-box">
+                     <div class="code-snippet-header">
+                        <div class="code-snippet-dots">
+                           <span class="code-dot code-dot--red"></span>
+                           <span class="code-dot code-dot--yellow"></span>
+                           <span class="code-dot code-dot--green"></span>
+                        </div>
+                        <span class="code-snippet-filename">math-evaluator.js</span>
+                        <span>ES6+</span>
+                     </div>
+                     <pre class="code-snippet-body"><code><span class="comment">// Safe Mathematical Expression Evaluator</span>
+<span class="kw">function</span> <span class="fn">evaluateMathExpression</span>(<span class="var">expr</span>) {
+  <span class="comment">// Replace scientific tokens with Math equivalents</span>
+  <span class="kw">let</span> <span class="var">sanitized</span> = <span class="var">expr</span>
+    .<span class="fn">replace</span>(/×/g, <span class="num">'*'</span>)
+    .<span class="fn">replace</span>(/÷/g, <span class="num">'/'</span>)
+    .<span class="fn">replace</span>(/π/g, Math.PI)
+    .<span class="fn">replace</span>(/sin\(([^)]+)\)/g, (<span class="var">_</span>, <span class="var">v</span>) => Math.<span class="fn">sin</span>((<span class="var">v</span> * Math.PI) / <span class="num">180</span>))
+    .<span class="fn">replace</span>(/cos\(([^)]+)\)/g, (<span class="var">_</span>, <span class="var">v</span>) => Math.<span class="fn">cos</span>((<span class="var">v</span> * Math.PI) / <span class="num">180</span>))
+    .<span class="fn">replace</span>(/√\(([^)]+)\)/g, (<span class="var">_</span>, <span class="var">v</span>) => Math.<span class="fn">sqrt</span>(<span class="var">v</span>));
+
+  <span class="comment">// Validate mathematical tokens against injection</span>
+  <span class="kw">if</span> (!/^[0-9+\-*/().\sMathPI]+$/.test(<span class="var">sanitized</span>)) {
+    <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="num">'Invalid Expression'</span>);
+  }
+
+  <span class="kw">const</span> <span class="var">result</span> = <span class="fn">Function</span>(<span class="num">`"use strict"; return (${sanitized});`</span>)();
+  <span class="kw">return</span> Math.<span class="fn">round</span>(<span class="var">result</span> * <span class="num">1e10</span>) / <span class="num">1e10</span>;
+}</code></pre>
+                  </div>
+
+                  <!-- Architectural Breakdown Cards -->
+                  <div class="arch-cards">
+                     <div class="arch-card">
+                        <h4>Strict Token Sanitization</h4>
+                        <p>Mathematical expressions are validated against strict regex character allowlists before
+                           evaluation, preventing injection vulnerabilities.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Zero Reflow Keypad Grid</h4>
+                        <p>The keypad layout utilizes pure CSS Grid with hardware-accelerated button press states for zero
+                           lag input response.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Microsecond Execution</h4>
+                        <p>Expression computations resolve in under 1 millisecond on mobile and desktop runtimes.</p>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 05: PERFORMANCE & BENCHMARKS -->
+            <section class="case-section" id="metrics">
+               <span class="case-section__num">04</span>
+               <h2 class="case-section__title">Performance &amp; Benchmarks</h2>
+
+               <div class="metrics-row">
+                  <div class="metric-card">
+                     <div class="metric-val">100</div>
+                     <div class="metric-label">Google Lighthouse Score</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">&lt; 1 ms</div>
+                     <div class="metric-label">Evaluation Latency</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">100%</div>
+                     <div class="metric-label">Client-Side Offline Ready</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">0 KB</div>
+                     <div class="metric-label">External Dependencies</div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 06: CHALLENGES & LEARNINGS -->
+            <section class="case-section" id="challenges">
+               <span class="case-section__num">05</span>
+               <h2 class="case-section__title">Key Challenges &amp; Solutions</h2>
+
+               <div class="challenges-grid">
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 01</span>
+                     <h4>Division by Zero &amp; Malformed Expressions</h4>
+                     <p>
+                        Incomplete user formulas or division by zero (<code>5 / 0</code>) can cause <code>Infinity</code>
+                        or application crashes.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Implemented defensive boundaries that catch division by zero and format
+                        user-friendly error signals gracefully.
+                     </div>
+                  </div>
+
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 02</span>
+                     <h4>Chained Operator Conflicts</h4>
+                     <p>
+                        Users typing successive operators in quick succession (such as <code>5 + * 3</code>) cause
+                        syntax parsing errors.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Built an operator debounce buffer that automatically overrides the previous
+                        operator with the newest input.
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- CASE STUDY FOOTER / NAVIGATION -->
+            <footer class="case-footer">
+               <div class="case-footer__nav">
+                  <!-- Previous Project Button -->
+                  <a href="project-taskmaster.html" class="case-nav-btn case-nav-btn--prev">
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-left-line"></i>
+                     </div>
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Previous Project</span>
+                        <h3 class="case-nav-btn__title">TaskMaster — Smart Task Manager</h3>
+                     </div>
+                  </a>
+
+                  <!-- Next Project Button -->
+                  <a href="project-stopwatch.html" class="case-nav-btn case-nav-btn--next">
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Next Project</span>
+                        <h3 class="case-nav-btn__title">Precision Stopwatch</h3>
+                     </div>
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-right-line"></i>
+                     </div>
+                  </a>
+               </div>
+            </footer>
+
+         </div>
+      </div>
+   </main>
+
+   <!--=============== SCRIPTS ===============-->
+   <script>
+      /*=============== LIVE SCIENTIFIC CALCULATOR DEMO ===============*/
+      const exprEl = document.getElementById('calc-expr');
+      const valEl = document.getElementById('calc-val');
+      const keypad = document.getElementById('calc-keypad');
+
+      let currentExpr = '';
+      let isEvaluated = false;
+
+      function updateDisplay() {
+         if (exprEl) {
+            exprEl.textContent = currentExpr || '\u00A0';
+         }
+      }
+
+      function safeCalculate(expression) {
+         try {
+            let sanitized = expression
+               .replace(/×/g, '*')
+               .replace(/÷/g, '/')
+               .replace(/−/g, '-')
+               .replace(/π/g, Math.PI)
+               .replace(/sin\(([^)]+)\)/g, (_, v) => Math.sin((parseFloat(v) * Math.PI) / 180))
+               .replace(/cos\(([^)]+)\)/g, (_, v) => Math.cos((parseFloat(v) * Math.PI) / 180))
+               .replace(/√\(([^)]+)\)/g, (_, v) => Math.sqrt(parseFloat(v)));
+
+            if (!/^[0-9+\-*/().\sMathPIe]+$/.test(sanitized)) {
+               return 'Error';
+            }
+
+            const result = Function(`"use strict"; return (${sanitized});`)();
+            if (typeof result !== 'number' || isNaN(result) || !isFinite(result)) {
+               return 'Error';
+            }
+            return String(Math.round(result * 1e10) / 1e10);
+         } catch (err) {
+            return 'Error';
+         }
+      }
+
+      if (keypad) {
+         keypad.addEventListener('click', (e) => {
+            const btn = e.target.closest('.calc-btn');
+            if (!btn) return;
+
+            const insert = btn.dataset.insert;
+            const func = btn.dataset.func;
+            const action = btn.dataset.action;
+
+            if (action === 'clear') {
+               currentExpr = '';
+               valEl.textContent = '0';
+               isEvaluated = false;
+               updateDisplay();
+               return;
+            }
+
+            if (action === 'backspace') {
+               if (isEvaluated) {
+                  currentExpr = '';
+                  valEl.textContent = '0';
+                  isEvaluated = false;
+               } else {
+                  currentExpr = currentExpr.slice(0, -1);
+               }
+               updateDisplay();
+               return;
+            }
+
+            if (action === 'equals') {
+               if (!currentExpr) return;
+               const result = safeCalculate(currentExpr);
+               valEl.textContent = result;
+               isEvaluated = true;
+               return;
+            }
+
+            if (func) {
+               if (isEvaluated) {
+                  currentExpr = '';
+                  isEvaluated = false;
+               }
+               if (func === 'pi') {
+                  currentExpr += 'π';
+               } else {
+                  currentExpr += `${func}(`;
+               }
+               updateDisplay();
+               return;
+            }
+
+            if (insert) {
+               if (isEvaluated) {
+                  if (/[0-9.]/.test(insert)) {
+                     currentExpr = '';
+                  }
+                  isEvaluated = false;
+               }
+               currentExpr += insert;
+               updateDisplay();
+            }
+         });
+      }
+
+      /*=============== DIRECTORY STICKY SCROLLSPY ===============*/
+      const sections = document.querySelectorAll('.case-section, .case-hero');
+      const dirLinks = document.querySelectorAll('.case-directory__link');
+
+      window.addEventListener('scroll', () => {
+         let currentSection = 'overview';
+         const scrollPos = window.scrollY + 180;
+
+         sections.forEach(sec => {
+            const top = sec.offsetTop;
+            const height = sec.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+               currentSection = sec.getAttribute('id');
+            }
+         });
+
+         dirLinks.forEach(link => {
+            if (link.getAttribute('data-section') === currentSection) {
+               link.classList.add('active');
+            } else {
+               link.classList.remove('active');
+            }
+         });
+      }, { passive: true });
+
+      /*=============== CUSTOM CURSOR ===============*/
+      const cursor = document.getElementById('cursor');
+      const cursorDot = document.getElementById('cursor-dot');
+
+      if (cursor && cursorDot) {
+         let mouseX = window.innerWidth / 2;
+         let mouseY = window.innerHeight / 2;
+         let cursorX = mouseX;
+         let cursorY = mouseY;
+         let isFirstMove = true;
+         const TRAIL_SPEED = 0.08;
+
+         document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (isFirstMove) {
+               cursorX = mouseX;
+               cursorY = mouseY;
+               cursor.style.left = `${cursorX}px`;
+               cursor.style.top = `${cursorY}px`;
+               cursor.classList.add('visible');
+               cursorDot.classList.add('visible');
+               isFirstMove = false;
+            }
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+         });
+
+         const renderCursor = () => {
+            cursorX += (mouseX - cursorX) * TRAIL_SPEED;
+            cursorY += (mouseY - cursorY) * TRAIL_SPEED;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(renderCursor);
+         };
+         requestAnimationFrame(renderCursor);
+
+         document.addEventListener('mouseleave', () => {
+            cursor.classList.remove('visible');
+            cursorDot.classList.remove('visible');
+         });
+
+         document.addEventListener('mouseenter', () => {
+            if (!isFirstMove) {
+               cursor.classList.add('visible');
+               cursorDot.classList.add('visible');
+            }
+         });
+
+         const isInteractive = (target) => {
+            return target && target.closest && target.closest('a, button, .problem-card, .ps-image-card, .feature-item, .metric-card, .challenge-card, .next-project-card, .calc-btn');
+         };
+
+         document.addEventListener('mouseover', (e) => {
+            if (isInteractive(e.target)) {
+               cursor.classList.add('hovered');
+            }
+         });
+
+         document.addEventListener('mouseout', (e) => {
+            if (isInteractive(e.target)) {
+               cursor.classList.remove('hovered');
+            }
+         });
+      }
+   </script>
+</body>
+
+</html>

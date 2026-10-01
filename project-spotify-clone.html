@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!--=============== FAVICON ===============-->
+   <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+   <!--=============== GOOGLE FONTS & MAIN CSS ===============-->
+   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./css/project-detail.css">
+
+   <title>Spotify Web Player Clone — Case Study | Tushar Patel</title>
+   <meta name="description"
+      content="Comprehensive case study of Spotify Web Player Clone: an authentic music streaming interface built with HTML5 Web Audio API by Tushar Patel.">
+</head>
+
+<body class="case-study-page">
+   <!-- CUSTOM CURSOR -->
+   <div class="cursor" id="cursor"></div>
+   <div class="cursor-dot" id="cursor-dot"></div>
+
+   <!-- Ambient Glowing Background Elements -->
+   <div class="case__glow case__glow--top-left"></div>
+   <div class="case__glow case__glow--top-right"></div>
+   <div class="case__glow case__glow--mid"></div>
+
+   <!--==================== HEADER & NAV ====================-->
+   <header class="case__header" id="case-header">
+      <div class="case__nav container">
+         <a href="index.html#projects" class="case__back-btn" id="case-back-btn">
+            <i class="ri-arrow-left-line"></i>
+            <span>Back to Projects</span>
+         </a>
+
+         <a href="index.html" class="case__brand">Tushar</a>
+
+         <div class="case__nav-actions">
+            <div class="case__status-pill">
+               <span class="dot"></span>
+               <span>Available for work</span>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <!--==================== HERO SECTION ====================-->
+   <section class="case-hero" id="overview">
+      <div class="container">
+         <div class="case-hero__content">
+            <span class="case-hero__eyebrow">
+               <i class="ri-spotify-line"></i>
+               AUDIO STREAMING &bull; WEB AUDIO API ARCHITECTURE
+            </span>
+
+            <div class="case-hero__title-row">
+               <h1 class="case-hero__title">Spotify Web Player Clone</h1>
+               <span class="case-hero__version-badge">v1.0</span>
+            </div>
+
+            <p class="case-hero__desc">
+               A modern music streaming web application replicating the Spotify desktop &amp; web player. Engineered
+               with the HTML5 Web Audio API, real-time progress scrubbing, dynamic playlist queueing, visualizer animations,
+               and an authentic dark glassmorphism interface.
+            </p>
+
+            <div class="case-hero__buttons">
+               <a href="https://spotify-clone-gules-tau.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--primary">
+                  <span>Visit Spotify Clone</span>
+                  <i class="ri-arrow-right-up-line"></i>
+               </a>
+               <a href="https://github.com/tusr23/Spotify-Clone" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--secondary">
+                  <i class="ri-code-s-slash-line"></i>
+                  <span>Source Code</span>
+               </a>
+               <a href="#showcase" class="case-btn case-btn--secondary">
+                  <span>Interactive Player</span>
+                  <i class="ri-arrow-down-line"></i>
+               </a>
+            </div>
+         </div>
+
+         <!-- Interactive Hero Showcase -->
+         <div class="case-hero__showcase" id="showcase">
+            <!-- Left Live Mini Spotify Player Widget -->
+            <div class="live-spotify-card">
+               <div class="sp-track-header">
+                  <div class="sp-album-art" id="sp-art">
+                     <i class="ri-music-2-line"></i>
+                  </div>
+                  <div class="sp-track-details">
+                     <span class="sp-track-title">Midnight City (Synthwave Edit)</span>
+                     <span class="sp-track-artist">Neon Dreams &bull; Cyberpunk 2088</span>
+                     <div class="sp-equalizer" id="sp-eq">
+                        <span class="sp-eq-bar"></span>
+                        <span class="sp-eq-bar"></span>
+                        <span class="sp-eq-bar"></span>
+                        <span class="sp-eq-bar"></span>
+                     </div>
+                  </div>
+                  <button class="sp-heart-btn" id="sp-heart" type="button" aria-label="Like Track">
+                     <i class="ri-heart-line" id="sp-heart-icon"></i>
+                  </button>
+               </div>
+
+               <!-- Scrubber Bar -->
+               <div class="sp-scrubber-wrap">
+                  <div class="sp-progress-bar" id="sp-progress-bar">
+                     <div class="sp-progress-fill" id="sp-progress-fill"></div>
+                  </div>
+                  <div class="sp-time-labels">
+                     <span id="sp-current-time">0:45</span>
+                     <span id="sp-total-time">3:24</span>
+                  </div>
+               </div>
+
+               <!-- Controls Row -->
+               <div class="sp-controls-row">
+                  <button class="sp-ctrl-btn" id="sp-prev" type="button" aria-label="Previous Track">
+                     <i class="ri-skip-back-fill"></i>
+                  </button>
+                  <button class="sp-play-btn" id="sp-play" type="button" aria-label="Play/Pause">
+                     <i class="ri-play-fill" id="sp-play-icon"></i>
+                  </button>
+                  <button class="sp-ctrl-btn" id="sp-next" type="button" aria-label="Next Track">
+                     <i class="ri-skip-forward-fill"></i>
+                  </button>
+               </div>
+            </div>
+
+            <!-- Right Showcase Mockup Preview -->
+            <div class="case-hero__img-wrap">
+               <img src="assets/img/projects-7.png" alt="Spotify Clone Showcase" class="case-hero__img">
+               <span class="case-hero__img-tag">Aesthetic UI Preview</span>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--==================== MAIN CASE STUDY BODY ====================-->
+   <main class="case-main">
+      <div class="container case-layout">
+         <!-- Left Sticky Directory -->
+         <aside class="case-directory">
+            <h4 class="case-directory__heading">Directory</h4>
+            <nav class="case-directory__list">
+               <a href="#overview" class="case-directory__link active" data-section="overview">
+                  <span class="num">01</span>
+                  <span>Overview</span>
+               </a>
+               <a href="#problem-solution" class="case-directory__link" data-section="problem-solution">
+                  <span class="num">02</span>
+                  <span>The Problem &amp; Solution</span>
+               </a>
+               <a href="#audio-core" class="case-directory__link" data-section="audio-core">
+                  <span class="num">03</span>
+                  <span>Audio Playback Core</span>
+               </a>
+               <a href="#queue-architecture" class="case-directory__link" data-section="queue-architecture">
+                  <span class="num">04</span>
+                  <span>Queue Architecture</span>
+               </a>
+               <a href="#metrics" class="case-directory__link" data-section="metrics">
+                  <span class="num">05</span>
+                  <span>Performance</span>
+               </a>
+               <a href="#challenges" class="case-directory__link" data-section="challenges">
+                  <span class="num">06</span>
+                  <span>Challenges &amp; Solutions</span>
+               </a>
+            </nav>
+         </aside>
+
+         <!-- Right Detailed Content Sections -->
+         <div class="case-content">
+
+            <!-- SECTION 02: THE PROBLEM & SOLUTION -->
+            <section class="case-section" id="problem-solution">
+               <span class="case-section__num">02</span>
+               <h2 class="case-section__title">The Problem &amp; Solution</h2>
+
+               <div class="problem-solution-grid">
+                  <div class="ps-text-col">
+                     <!-- The Problem Card -->
+                     <div class="problem-card">
+                        <span class="problem-card__label">THE PROBLEM</span>
+                        <p class="problem-card__desc">
+                           Streaming media players in the browser often suffer from audio latency, track transition
+                           deadlocks, desynchronized scrubber bars during playback, and memory leaks from uncleaned audio
+                           context instances.
+                        </p>
+                     </div>
+
+                     <!-- The Solution Block -->
+                     <div class="solution-block">
+                        <span class="solution-block__label">THE SOLUTION</span>
+                        <h3 class="solution-block__title">Event-Driven Web Audio Stream Engine</h3>
+                        <p class="solution-block__desc">
+                           Implemented a centralized audio controller utilizing HTML5 audio and the Web Audio API.
+                           Integrates hardware-accelerated scrubber updates, seamless track queues, animated equalizer
+                           telemetry, and resilient state recovery with zero third-party dependencies.
+                        </p>
+                     </div>
+                  </div>
+
+                  <!-- Right Image Showcase Card -->
+                  <div class="ps-image-card">
+                     <div class="ps-image-card__header">
+                        <span class="ps-image-card__title">SPOTIFY CLONE</span>
+                        <span class="ps-image-card__badge">v1.0</span>
+                     </div>
+                     <img src="assets/img/spotify-clone.png" alt="Spotify Clone High Resolution Showcase"
+                        class="ps-image-card__img" loading="lazy">
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 03: AUDIO PLAYBACK CORE -->
+            <section class="case-section" id="audio-core">
+               <span class="case-section__num">03</span>
+               <h2 class="case-section__title">Audio Playback Core</h2>
+
+               <div class="features-split-grid">
+                  <div class="features-image-wrap">
+                     <img src="assets/img/projects-7.png" alt="Music Streaming Features Showcase" loading="lazy">
+                  </div>
+
+                  <div class="features-list">
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-disc-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Seamless Audio Buffer Playback</h4>
+                           <p>Non-blocking asynchronous audio stream buffering with instant play/pause responses and smooth
+                              cross-track transitions.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-sound-module-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>60 FPS Scrubber Synchronization</h4>
+                           <p>Real-time playback position tracking with interactive drag-to-seek scrubber support and precise
+                              timestamp telemetry.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-play-list-2-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Dynamic Playlist Queue Management</h4>
+                           <p>Instantaneous playlist track swapping, previous/next index stepping, and automatic track
+                              advancement upon playback completion.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-volume-up-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Volume Gain Node &amp; Equalizer</h4>
+                           <p>Decibel attenuation controls with animated multi-bar frequency equalizers synchronizing to the
+                              playback state.</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 04: QUEUE ARCHITECTURE & CODE -->
+            <section class="case-section" id="queue-architecture">
+               <span class="case-section__num">04</span>
+               <h2 class="case-section__title">Queue Architecture &amp; Code</h2>
+
+               <div class="architecture-grid">
+                  <!-- Code Snippet Box -->
+                  <div class="code-snippet-box">
+                     <div class="code-snippet-header">
+                        <div class="code-snippet-dots">
+                           <span class="code-dot code-dot--red"></span>
+                           <span class="code-dot code-dot--yellow"></span>
+                           <span class="code-dot code-dot--green"></span>
+                        </div>
+                        <span class="code-snippet-filename">audio-controller.js</span>
+                        <span>ES6+</span>
+                     </div>
+                     <pre class="code-snippet-body"><code><span class="comment">// Centralized Audio Playback Controller</span>
+<span class="kw">class</span> <span class="fn">AudioPlaybackEngine</span> {
+  <span class="kw">constructor</span>(<span class="var">tracks</span> = []) {
+    <span class="kw">this</span>.<span class="var">tracks</span> = <span class="var">tracks</span>;
+    <span class="kw">this</span>.<span class="var">currentIndex</span> = <span class="num">0</span>;
+    <span class="kw">this</span>.<span class="var">audio</span> = <span class="kw">new</span> <span class="fn">Audio</span>();
+    <span class="kw">this</span>.<span class="var">isPlaying</span> = <span class="kw">false</span>;
+    <span class="kw">this</span>.<span class="fn">setupEvents</span>();
+  }
+
+  <span class="fn">togglePlay</span>() {
+    <span class="kw">if</span> (<span class="kw">this</span>.<span class="var">isPlaying</span>) {
+      <span class="kw">this</span>.<span class="var">audio</span>.<span class="fn">pause</span>();
+      <span class="kw">this</span>.<span class="var">isPlaying</span> = <span class="kw">false</span>;
+    } <span class="kw">else</span> {
+      <span class="kw">this</span>.<span class="var">audio</span>.<span class="fn">play</span>().<span class="fn">then</span>(() => {
+        <span class="kw">this</span>.<span class="var">isPlaying</span> = <span class="kw">true</span>;
+      });
+    }
+  }
+
+  <span class="fn">nextTrack</span>() {
+    <span class="kw">this</span>.<span class="var">currentIndex</span> = (<span class="kw">this</span>.<span class="var">currentIndex</span> + <span class="num">1</span>) % <span class="kw">this</span>.<span class="var">tracks</span>.length;
+    <span class="kw">this</span>.<span class="fn">loadTrack</span>(<span class="kw">this</span>.<span class="var">currentIndex</span>);
+  }
+}</code></pre>
+                  </div>
+
+                  <!-- Architectural Breakdown Cards -->
+                  <div class="arch-cards">
+                     <div class="arch-card">
+                        <h4>Non-Blocking Audio Node Pipeline</h4>
+                        <p>Leverages native browser media subsystems for hardware-accelerated audio decoding and mixing.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Zero Reflow Visualizers</h4>
+                        <p>Equalizer animations utilize CSS transform heights, ensuring steady 60 FPS graphics during playback.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Zero Framework Overhead</h4>
+                        <p>Delivers a full-fledged streaming client with instant sub-millisecond DOM reactivity.</p>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 05: PERFORMANCE & BENCHMARKS -->
+            <section class="case-section" id="metrics">
+               <span class="case-section__num">05</span>
+               <h2 class="case-section__title">Performance &amp; Benchmarks</h2>
+
+               <div class="metrics-row">
+                  <div class="metric-card">
+                     <div class="metric-val">100</div>
+                     <div class="metric-label">Google Lighthouse Score</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">&lt; 50 ms</div>
+                     <div class="metric-label">Audio Buffer Init</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">60 FPS</div>
+                     <div class="metric-label">Visualizer Paint Rate</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">0 KB</div>
+                     <div class="metric-label">External Frameworks</div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 06: CHALLENGES & SOLUTIONS -->
+            <section class="case-section" id="challenges">
+               <span class="case-section__num">06</span>
+               <h2 class="case-section__title">Key Challenges &amp; Solutions</h2>
+
+               <div class="challenges-grid">
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 01</span>
+                     <h4>Browser Autoplay Policy Restrictions</h4>
+                     <p>
+                        Modern browsers strictly block unprompted programmatic audio playback without prior direct user
+                        interaction gestures.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Defer AudioContext activation until the user explicitly clicks the
+                        initial Play button, smoothly unlocking the media pipeline.
+                     </div>
+                  </div>
+
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 02</span>
+                     <h4>Scrubber Stuttering During User Drag</h4>
+                     <p>
+                        Simultaneous audio timeupdate events and manual scrubber drag events caused UI jitter and audio
+                        stutter.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Implemented a drag state lock that temporarily disables automatic timeupdate
+                        paints while the user actively holds and scrubs the progress bar.
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- CASE STUDY FOOTER / NAVIGATION -->
+            <footer class="case-footer">
+               <div class="case-footer__nav">
+                  <!-- Previous Project Button -->
+                  <a href="project-amazon-clone.html" class="case-nav-btn case-nav-btn--prev">
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-left-line"></i>
+                     </div>
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Previous Project</span>
+                        <h3 class="case-nav-btn__title">Amazon Clone — E-Commerce Store</h3>
+                     </div>
+                  </a>
+
+                  <!-- Back to Portfolio Button -->
+                  <a href="index.html" class="case-nav-btn case-nav-btn--next">
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Return</span>
+                        <h3 class="case-nav-btn__title">Back to Portfolio</h3>
+                     </div>
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-home-4-line"></i>
+                     </div>
+                  </a>
+               </div>
+            </footer>
+
+         </div>
+      </div>
+   </main>
+
+   <!--=============== SCRIPTS ===============-->
+   <script>
+      /*=============== LIVE SPOTIFY DEMO LOGIC ===============*/
+      const playBtn = document.getElementById('sp-play');
+      const playIcon = document.getElementById('sp-play-icon');
+      const eqEl = document.getElementById('sp-eq');
+      const artEl = document.getElementById('sp-art');
+      const heartBtn = document.getElementById('sp-heart');
+      const heartIcon = document.getElementById('sp-heart-icon');
+      const progressFill = document.getElementById('sp-progress-fill');
+      const progressBar = document.getElementById('sp-progress-bar');
+      const currentTimeEl = document.getElementById('sp-current-time');
+
+      let isPlaying = false;
+      let progressPercent = 28;
+      let totalSeconds = 204; // 3:24
+      let currentSeconds = Math.floor((progressPercent / 100) * totalSeconds);
+      let ticker = null;
+
+      function formatTime(secs) {
+         const m = Math.floor(secs / 60);
+         const s = secs % 60;
+         return `${m}:${String(s).padStart(2, '0')}`;
+      }
+
+      function updatePlayState(play) {
+         isPlaying = play;
+         if (isPlaying) {
+            playIcon.className = 'ri-pause-fill';
+            eqEl.classList.add('playing');
+            artEl.classList.add('playing');
+            
+            ticker = setInterval(() => {
+               if (currentSeconds < totalSeconds) {
+                  currentSeconds++;
+                  progressPercent = (currentSeconds / totalSeconds) * 100;
+                  progressFill.style.width = `${progressPercent}%`;
+                  currentTimeEl.textContent = formatTime(currentSeconds);
+               } else {
+                  currentSeconds = 0;
+                  updatePlayState(false);
+               }
+            }, 1000);
+         } else {
+            playIcon.className = 'ri-play-fill';
+            eqEl.classList.remove('playing');
+            artEl.classList.remove('playing');
+            if (ticker) clearInterval(ticker);
+         }
+      }
+
+      if (playBtn) {
+         playBtn.addEventListener('click', () => {
+            updatePlayState(!isPlaying);
+         });
+      }
+
+      // Interactive Click to Seek on Scrubber
+      if (progressBar) {
+         progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const pct = Math.max(0, Math.min(100, (clickX / rect.width) * 100));
+            progressPercent = pct;
+            currentSeconds = Math.floor((pct / 100) * totalSeconds);
+            progressFill.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(currentSeconds);
+         });
+      }
+
+      // Heart Button
+      if (heartBtn) {
+         heartBtn.addEventListener('click', () => {
+            heartBtn.classList.toggle('liked');
+            if (heartBtn.classList.contains('liked')) {
+               heartIcon.className = 'ri-heart-fill';
+            } else {
+               heartIcon.className = 'ri-heart-line';
+            }
+         });
+      }
+
+      /*=============== DIRECTORY SCROLL-SPY & ACTIVE LINKS ===============*/
+      const dirLinks = document.querySelectorAll('.case-directory__link');
+      const observedSections = document.querySelectorAll('.case-section, .case-hero');
+
+      function updateActiveDirectory() {
+         const scrollY = window.pageYOffset + 240;
+
+         observedSections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            const id = section.getAttribute('id');
+
+            if (scrollY >= top && scrollY < top + height) {
+               dirLinks.forEach(link => {
+                  link.classList.remove('active');
+                  if (link.getAttribute('href') === `#${id}`) {
+                     link.classList.add('active');
+                  }
+               });
+            }
+         });
+      }
+
+      window.addEventListener('scroll', updateActiveDirectory, { passive: true });
+
+      /*=============== CUSTOM CURSOR SYNC ===============*/
+      const cursor = document.getElementById('cursor');
+      const cursorDot = document.getElementById('cursor-dot');
+
+      if (cursor && cursorDot && window.innerWidth > 768) {
+         window.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+         });
+
+         const interactables = document.querySelectorAll('a, button, .case-directory__link, .metric-card, .challenge-card');
+         interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+         });
+      }
+   </script>
+</body>
+
+</html>
