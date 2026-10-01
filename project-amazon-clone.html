@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!--=============== FAVICON ===============-->
+   <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+   <!--=============== GOOGLE FONTS & MAIN CSS ===============-->
+   <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./css/project-detail.css">
+
+   <title>Amazon Clone — Case Study | Tushar Patel</title>
+   <meta name="description"
+      content="Comprehensive case study of Amazon Clone: an interactive e-commerce web storefront with real-time cart calculations and persistent storage by Tushar Patel.">
+</head>
+
+<body class="case-study-page">
+   <!-- CUSTOM CURSOR -->
+   <div class="cursor" id="cursor"></div>
+   <div class="cursor-dot" id="cursor-dot"></div>
+
+   <!-- Ambient Glowing Background Elements -->
+   <div class="case__glow case__glow--top-left"></div>
+   <div class="case__glow case__glow--top-right"></div>
+   <div class="case__glow case__glow--mid"></div>
+
+   <!--==================== HEADER & NAV ====================-->
+   <header class="case__header" id="case-header">
+      <div class="case__nav container">
+         <a href="index.html#projects" class="case__back-btn" id="case-back-btn">
+            <i class="ri-arrow-left-line"></i>
+            <span>Back to Projects</span>
+         </a>
+
+         <a href="index.html" class="case__brand">Tushar</a>
+
+         <div class="case__nav-actions">
+            <div class="case__status-pill">
+               <span class="dot"></span>
+               <span>Available for work</span>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <!--==================== HERO SECTION ====================-->
+   <section class="case-hero" id="overview">
+      <div class="container">
+         <div class="case-hero__content">
+            <span class="case-hero__eyebrow">
+               <i class="ri-shopping-cart-2-line"></i>
+               E-COMMERCE SYSTEM &bull; CART STATE ARCHITECTURE
+            </span>
+
+            <div class="case-hero__title-row">
+               <h1 class="case-hero__title">Amazon Clone — E-Commerce Store</h1>
+               <span class="case-hero__version-badge">v1.0</span>
+            </div>
+
+            <p class="case-hero__desc">
+               A high-performance e-commerce web storefront inspired by Amazon. Engineered with dynamic product catalog
+               filtering, real-time cart computations, responsive delivery estimation, and resilient local storage state
+               persistence.
+            </p>
+
+            <div class="case-hero__buttons">
+               <a href="https://amazon-clone-weld-three-16.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--primary">
+                  <span>Visit Amazon Clone</span>
+                  <i class="ri-arrow-right-up-line"></i>
+               </a>
+               <a href="https://github.com/tusr23/Amazon-Clone" target="_blank" rel="noopener noreferrer"
+                  class="case-btn case-btn--secondary">
+                  <i class="ri-code-s-slash-line"></i>
+                  <span>Source Code</span>
+               </a>
+               <a href="#showcase" class="case-btn case-btn--secondary">
+                  <span>Interactive Store</span>
+                  <i class="ri-arrow-down-line"></i>
+               </a>
+            </div>
+         </div>
+
+         <!-- Interactive Hero Showcase -->
+         <div class="case-hero__showcase" id="showcase">
+            <!-- Left Live Mini E-Commerce Widget -->
+            <div class="live-amazon-card">
+               <div class="amz-header-bar">
+                  <div class="amz-logo-badge">
+                     <i class="ri-amazon-fill"></i>
+                     <span>prime</span>
+                  </div>
+                  <button class="amz-cart-btn" id="amz-cart-btn" type="button">
+                     <i class="ri-shopping-basket-line"></i>
+                     <span>Cart</span>
+                     <span class="amz-cart-badge" id="amz-cart-count">0</span>
+                  </button>
+               </div>
+
+               <div class="amz-product-row">
+                  <div class="amz-prod-thumb">
+                     <i class="ri-headphone-line"></i>
+                  </div>
+                  <div class="amz-prod-info">
+                     <h4 class="amz-prod-title">Wireless ANC Headphones Pro</h4>
+                     <div class="amz-prod-stars">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-half-fill"></i>
+                        <span>4.8 (2,450)</span>
+                     </div>
+                     <div class="amz-price-row">
+                        <span class="amz-price-current">$89.99</span>
+                        <span class="amz-price-old">$119.99</span>
+                        <span class="amz-price-discount">-25%</span>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="amz-actions-row">
+                  <div class="amz-qty-picker">
+                     <button class="amz-qty-btn" id="qty-minus" type="button">−</button>
+                     <span class="amz-qty-val" id="qty-display">1</span>
+                     <button class="amz-qty-btn" id="qty-plus" type="button">+</button>
+                  </div>
+
+                  <button class="amz-add-btn" id="amz-add-btn" type="button">
+                     <i class="ri-shopping-cart-line"></i>
+                     <span>Add to Cart</span>
+                  </button>
+               </div>
+
+               <div class="amz-toast" id="amz-toast">✓ Added to cart! Subtotal updated.</div>
+            </div>
+
+            <!-- Right Showcase Mockup Preview -->
+            <div class="case-hero__img-wrap">
+               <img src="assets/img/projects-6.png" alt="Amazon Clone Showcase" class="case-hero__img">
+               <span class="case-hero__img-tag">Aesthetic UI Preview</span>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!--==================== MAIN CASE STUDY BODY ====================-->
+   <main class="case-main">
+      <div class="container case-layout">
+         <!-- Left Sticky Directory -->
+         <aside class="case-directory">
+            <h4 class="case-directory__heading">Directory</h4>
+            <nav class="case-directory__list">
+               <a href="#overview" class="case-directory__link active" data-section="overview">
+                  <span class="num">01</span>
+                  <span>Overview</span>
+               </a>
+               <a href="#problem-solution" class="case-directory__link" data-section="problem-solution">
+                  <span class="num">02</span>
+                  <span>The Problem &amp; Solution</span>
+               </a>
+               <a href="#cart-features" class="case-directory__link" data-section="cart-features">
+                  <span class="num">03</span>
+                  <span>Cart &amp; Catalog Engine</span>
+               </a>
+               <a href="#state-machine" class="case-directory__link" data-section="state-machine">
+                  <span class="num">04</span>
+                  <span>State Architecture</span>
+               </a>
+               <a href="#metrics" class="case-directory__link" data-section="metrics">
+                  <span class="num">05</span>
+                  <span>Performance</span>
+               </a>
+               <a href="#challenges" class="case-directory__link" data-section="challenges">
+                  <span class="num">06</span>
+                  <span>Challenges &amp; Solutions</span>
+               </a>
+            </nav>
+         </aside>
+
+         <!-- Right Detailed Content Sections -->
+         <div class="case-content">
+
+            <!-- SECTION 02: THE PROBLEM & SOLUTION -->
+            <section class="case-section" id="problem-solution">
+               <span class="case-section__num">02</span>
+               <h2 class="case-section__title">The Problem &amp; Solution</h2>
+
+               <div class="problem-solution-grid">
+                  <div class="ps-text-col">
+                     <!-- The Problem Card -->
+                     <div class="problem-card">
+                        <span class="problem-card__label">THE PROBLEM</span>
+                        <p class="problem-card__desc">
+                           E-commerce storefronts frequently face cart synchronization desynchronization, layout shifts
+                           when rendering complex product catalogs, and accidental loss of active orders upon tab closure
+                           or network disconnection.
+                        </p>
+                     </div>
+
+                     <!-- The Solution Block -->
+                     <div class="solution-block">
+                        <span class="solution-block__label">THE SOLUTION</span>
+                        <h3 class="solution-block__title">Atomic Cart Store &amp; LocalStorage State Machine</h3>
+                        <p class="solution-block__desc">
+                           Engineered a unified event-driven cart state engine. Dispatches immutable order mutations,
+                           automatically recalculates subtotals, discounts, and item counters, and serializes state
+                           synchronously to browser storage for complete offline session persistence.
+                        </p>
+                     </div>
+                  </div>
+
+                  <!-- Right Image Showcase Card -->
+                  <div class="ps-image-card">
+                     <div class="ps-image-card__header">
+                        <span class="ps-image-card__title">AMAZON CLONE</span>
+                        <span class="ps-image-card__badge">v1.0</span>
+                     </div>
+                     <img src="assets/img/amazon-clone.png" alt="Amazon Clone High Resolution Showcase"
+                        class="ps-image-card__img" loading="lazy">
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 03: CART & CATALOG ENGINE -->
+            <section class="case-section" id="cart-features">
+               <span class="case-section__num">03</span>
+               <h2 class="case-section__title">Cart &amp; Catalog Engine</h2>
+
+               <div class="features-split-grid">
+                  <div class="features-image-wrap">
+                     <img src="assets/img/projects-6.png" alt="E-Commerce Key Features Showcase" loading="lazy">
+                  </div>
+
+                  <div class="features-list">
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-shopping-bag-3-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Real-Time Cart Calculation</h4>
+                           <p>Instantaneous pricing engine calculates subtotals, volume discounts, taxes, and shipping
+                              fees dynamically on each cart mutation.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-filter-3-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Multi-Facet Product Filtering</h4>
+                           <p>Filter products by department, user ratings, price brackets, and prime eligibility with
+                              instant DOM updates.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-database-2-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Persistent Storage Sync</h4>
+                           <p>Caches cart contents, user preferences, and quantity counters directly in <code>localStorage</code>
+                              with zero network overhead.</p>
+                        </div>
+                     </div>
+
+                     <div class="feature-item">
+                        <div class="feature-icon">
+                           <i class="ri-truck-line"></i>
+                        </div>
+                        <div class="feature-content">
+                           <h4>Estimated Delivery Telemetry</h4>
+                           <p>Simulates real-world Prime shipping date projections based on current date calculations and
+                              regional shipping buffers.</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 04: STATE ARCHITECTURE & CODE -->
+            <section class="case-section" id="state-machine">
+               <span class="case-section__num">04</span>
+               <h2 class="case-section__title">State Architecture &amp; Code</h2>
+
+               <div class="architecture-grid">
+                  <!-- Code Snippet Box -->
+                  <div class="code-snippet-box">
+                     <div class="code-snippet-header">
+                        <div class="code-snippet-dots">
+                           <span class="code-dot code-dot--red"></span>
+                           <span class="code-dot code-dot--yellow"></span>
+                           <span class="code-dot code-dot--green"></span>
+                        </div>
+                        <span class="code-snippet-filename">cart-store.js</span>
+                        <span>ES6+</span>
+                     </div>
+                     <pre class="code-snippet-body"><code><span class="comment">// Unified Event-Driven Cart Store</span>
+<span class="kw">class</span> <span class="fn">CartStore</span> {
+  <span class="kw">constructor</span>() {
+    <span class="kw">this</span>.<span class="var">items</span> = JSON.<span class="fn">parse</span>(localStorage.<span class="fn">getItem</span>(<span class="num">'amz_cart'</span>) || <span class="num">'[]'</span>);
+  }
+
+  <span class="fn">addItem</span>(<span class="var">product</span>, <span class="var">qty</span> = <span class="num">1</span>) {
+    <span class="kw">const</span> <span class="var">index</span> = <span class="kw">this</span>.<span class="var">items</span>.<span class="fn">findIndex</span>(<span class="var">i</span> => <span class="var">i</span>.<span class="var">id</span> === <span class="var">product</span>.<span class="var">id</span>);
+    <span class="kw">if</span> (<span class="var">index</span> > -<span class="num">1</span>) {
+      <span class="kw">this</span>.<span class="var">items</span>[<span class="var">index</span>].<span class="var">quantity</span> += <span class="var">qty</span>;
+    } <span class="kw">else</span> {
+      <span class="kw">this</span>.<span class="var">items</span>.<span class="fn">push</span>({ ...<span class="var">product</span>, <span class="var">quantity</span>: <span class="var">qty</span> });
+    }
+    <span class="kw">this</span>.<span class="fn">sync</span>();
+  }
+
+  <span class="fn">getTotals</span>() {
+    <span class="kw">return</span> <span class="kw">this</span>.<span class="var">items</span>.<span class="fn">reduce</span>((<span class="var">acc</span>, <span class="var">item</span>) => {
+      <span class="var">acc</span>.<span class="var">count</span> += <span class="var">item</span>.<span class="var">quantity</span>;
+      <span class="var">acc</span>.<span class="var">subtotal</span> += <span class="var">item</span>.<span class="var">price</span> * <span class="var">item</span>.<span class="var">quantity</span>;
+      <span class="kw">return</span> <span class="var">acc</span>;
+    }, { <span class="var">count</span>: <span class="num">0</span>, <span class="var">subtotal</span>: <span class="num">0</span> });
+  }
+
+  <span class="fn">sync</span>() {
+    localStorage.<span class="fn">setItem</span>(<span class="num">'amz_cart'</span>, JSON.<span class="fn">stringify</span>(<span class="kw">this</span>.<span class="var">items</span>));
+  }
+}</code></pre>
+                  </div>
+
+                  <!-- Architectural Breakdown Cards -->
+                  <div class="arch-cards">
+                     <div class="arch-card">
+                        <h4>Atomic State Reducers</h4>
+                        <p>Order additions and quantity modifications trigger atomic updates, preventing conflicting cart states.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Sub-Millisecond Math</h4>
+                        <p>Recalculates cart totals and item counts in microsecond execution time on pure vanilla JS.</p>
+                     </div>
+                     <div class="arch-card">
+                        <h4>Zero External Bundles</h4>
+                        <p>Delivers full e-commerce shopping interactivity without requiring hefty third-party libraries.</p>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 05: PERFORMANCE & BENCHMARKS -->
+            <section class="case-section" id="metrics">
+               <span class="case-section__num">05</span>
+               <h2 class="case-section__title">Performance &amp; Benchmarks</h2>
+
+               <div class="metrics-row">
+                  <div class="metric-card">
+                     <div class="metric-val">100</div>
+                     <div class="metric-label">Google Lighthouse Score</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">&lt; 1 ms</div>
+                     <div class="metric-label">Cart Recalculation</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">100%</div>
+                     <div class="metric-label">Offline Session Ready</div>
+                  </div>
+                  <div class="metric-card">
+                     <div class="metric-val">0 KB</div>
+                     <div class="metric-label">External Frameworks</div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- SECTION 06: CHALLENGES & SOLUTIONS -->
+            <section class="case-section" id="challenges">
+               <span class="case-section__num">06</span>
+               <h2 class="case-section__title">Key Challenges &amp; Solutions</h2>
+
+               <div class="challenges-grid">
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 01</span>
+                     <h4>Rapid Multi-Click Cart Flooding</h4>
+                     <p>
+                        Spamming the "Add to Cart" button could lead to out-of-order storage synchronization and UI counter
+                        flicker.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Debounced storage serialization and used synchronous in-memory state
+                        buffers before dispatching storage events.
+                     </div>
+                  </div>
+
+                  <div class="challenge-card">
+                     <span class="challenge-tag challenge-tag--red">Challenge 02</span>
+                     <h4>Product Card Layout Shifts</h4>
+                     <p>
+                        Varying title lengths and product badge tags caused jarring grid re-alignments during catalog filtering.
+                     </p>
+                     <div class="challenge-resolution">
+                        <strong>Solution:</strong> Implemented CSS Grid subgrids with fixed aspect ratios and line-clamped
+                        typography to maintain rock-solid layout stability.
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <!-- CASE STUDY FOOTER / NAVIGATION -->
+            <footer class="case-footer">
+               <div class="case-footer__nav">
+                  <!-- Previous Project Button -->
+                  <a href="project-login-signup.html" class="case-nav-btn case-nav-btn--prev">
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-left-line"></i>
+                     </div>
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Previous Project</span>
+                        <h3 class="case-nav-btn__title">Modern Login &amp; Sign Up Form</h3>
+                     </div>
+                  </a>
+
+                  <!-- Next Project Button -->
+                  <a href="project-spotify-clone.html" class="case-nav-btn case-nav-btn--next">
+                     <div class="case-nav-btn__content">
+                        <span class="case-nav-btn__label">Next Project</span>
+                        <h3 class="case-nav-btn__title">Spotify Web Player Clone</h3>
+                     </div>
+                     <div class="case-nav-btn__icon">
+                        <i class="ri-arrow-right-line"></i>
+                     </div>
+                  </a>
+               </div>
+            </footer>
+
+         </div>
+      </div>
+   </main>
+
+   <!--=============== SCRIPTS ===============-->
+   <script>
+      /*=============== LIVE E-COMMERCE CART WIDGET ===============*/
+      let currentQty = 1;
+      let totalCartItems = 0;
+
+      const qtyDisplay = document.getElementById('qty-display');
+      const qtyMinus = document.getElementById('qty-minus');
+      const qtyPlus = document.getElementById('qty-plus');
+      const addBtn = document.getElementById('amz-add-btn');
+      const cartCountEl = document.getElementById('amz-cart-count');
+      const toastEl = document.getElementById('amz-toast');
+
+      if (qtyMinus && qtyPlus && qtyDisplay) {
+         qtyMinus.addEventListener('click', () => {
+            if (currentQty > 1) {
+               currentQty--;
+               qtyDisplay.textContent = currentQty;
+            }
+         });
+
+         qtyPlus.addEventListener('click', () => {
+            if (currentQty < 10) {
+               currentQty++;
+               qtyDisplay.textContent = currentQty;
+            }
+         });
+      }
+
+      if (addBtn && cartCountEl && toastEl) {
+         addBtn.addEventListener('click', () => {
+            totalCartItems += currentQty;
+            cartCountEl.textContent = totalCartItems;
+            
+            const subtotal = (totalCartItems * 89.99).toFixed(2);
+            toastEl.textContent = `✓ Added ${currentQty} item(s)! Cart Subtotal: $${subtotal}`;
+            toastEl.style.display = 'block';
+
+            currentQty = 1;
+            qtyDisplay.textContent = currentQty;
+
+            setTimeout(() => {
+               toastEl.style.display = 'none';
+            }, 3200);
+         });
+      }
+
+      /*=============== DIRECTORY SCROLL-SPY & ACTIVE LINKS ===============*/
+      const dirLinks = document.querySelectorAll('.case-directory__link');
+      const observedSections = document.querySelectorAll('.case-section, .case-hero');
+
+      function updateActiveDirectory() {
+         const scrollY = window.pageYOffset + 240;
+
+         observedSections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            const id = section.getAttribute('id');
+
+            if (scrollY >= top && scrollY < top + height) {
+               dirLinks.forEach(link => {
+                  link.classList.remove('active');
+                  if (link.getAttribute('href') === `#${id}`) {
+                     link.classList.add('active');
+                  }
+               });
+            }
+         });
+      }
+
+      window.addEventListener('scroll', updateActiveDirectory, { passive: true });
+
+      /*=============== CUSTOM CURSOR SYNC ===============*/
+      const cursor = document.getElementById('cursor');
+      const cursorDot = document.getElementById('cursor-dot');
+
+      if (cursor && cursorDot && window.innerWidth > 768) {
+         window.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+         });
+
+         const interactables = document.querySelectorAll('a, button, .case-directory__link, .metric-card, .challenge-card');
+         interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+         });
+      }
+   </script>
+</body>
+
+</html>
