@@ -603,23 +603,73 @@
 
       window.addEventListener('scroll', updateActiveDirectory, { passive: true });
 
-      /*=============== CUSTOM CURSOR SYNC ===============*/
+            /*=============== CUSTOM CURSOR ===============*/
       const cursor = document.getElementById('cursor');
       const cursorDot = document.getElementById('cursor-dot');
 
-      if (cursor && cursorDot && window.innerWidth > 768) {
-         window.addEventListener('mousemove', (e) => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
+      if (cursor && cursorDot) {
+         let mouseX = window.innerWidth / 2;
+         let mouseY = window.innerHeight / 2;
+         let cursorX = mouseX;
+         let cursorY = mouseY;
+         let isFirstMove = true;
+         const TRAIL_SPEED = 0.08;
+
+         document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (isFirstMove) {
+               cursorX = mouseX;
+               cursorY = mouseY;
+               cursor.style.left = `${cursorX}px`;
+               cursor.style.top = `${cursorY}px`;
+               cursor.classList.add('visible');
+               cursorDot.classList.add('visible');
+               isFirstMove = false;
+            }
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
          });
 
-         const interactables = document.querySelectorAll('a, button, input, .case-directory__link, .metric-card, .challenge-card');
-         interactables.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+         const renderCursor = () => {
+            cursorX += (mouseX - cursorX) * TRAIL_SPEED;
+            cursorY += (mouseY - cursorY) * TRAIL_SPEED;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(renderCursor);
+         };
+         requestAnimationFrame(renderCursor);
+
+         document.addEventListener('mouseleave', () => {
+            cursor.classList.remove('visible');
+            cursorDot.classList.remove('visible');
          });
+
+         document.addEventListener('mouseenter', () => {
+            if (!isFirstMove) {
+               cursor.classList.add('visible');
+               cursorDot.classList.add('visible');
+            }
+         });
+
+         const isInteractive = (target) => {
+            return target && target.closest && target.closest('a, button, input, textarea, select, .problem-card, .ps-image-card, .feature-item, .metric-card, .challenge-card, .next-project-card, .case-nav-btn, .case-directory__link, .calc-btn, .sw-btn, .auth-tab-btn, .auth-submit-btn, .amz-add-btn, .amz-qty-btn, .sp-play-btn, .sp-ctrl-btn, .sp-heart-btn, .sp-progress-bar');
+         };
+
+         document.addEventListener('mouseover', (e) => {
+            if (isInteractive(e.target)) {
+               cursor.classList.add('hovered');
+            }
+         });
+
+         document.addEventListener('mouseout', (e) => {
+            if (isInteractive(e.target)) {
+               cursor.classList.remove('hovered');
+            }
+         });
+
+         document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+         document.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
       }
    </script>
 </body>
