@@ -87,7 +87,10 @@ button {
   font-family: inherit;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--title-color);
   font-family: var(--second-font);
   font-weight: var(--font-semi-bold);
@@ -188,6 +191,7 @@ img {
     transform: scale(0.9) translate(-50%, -50%);
     opacity: 0.7;
   }
+
   100% {
     transform: scale(1.15) translate(-50%, -50%);
     opacity: 1;
@@ -206,12 +210,12 @@ img {
   pointer-events: none;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-              height 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
-              border-color 0.25s ease, 
-              background-color 0.25s ease,
-              opacity 0.3s ease,
-              transform 0.15s ease;
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    opacity 0.3s ease,
+    transform 0.15s ease;
   z-index: var(--z-cursor);
   box-shadow: 0 0 12px hsla(var(--hue), 70%, 64%, 0.35);
 }
@@ -1144,6 +1148,7 @@ img {
     opacity: 0;
     transform: scale(0.9) translateY(18px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -1427,18 +1432,17 @@ img {
   left: 50%;
   transform: translateX(-50%);
   width: 3px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--first-color-light) 10%,
-    var(--first-color) 50%,
-    var(--first-color-light) 90%,
-    transparent 100%
-  );
+  background: linear-gradient(180deg,
+      transparent 0%,
+      var(--first-color-light) 10%,
+      var(--first-color) 50%,
+      var(--first-color-light) 90%,
+      transparent 100%);
   border-radius: 4px;
   box-shadow: 0 0 16px var(--first-color-glow);
   z-index: 1;
 }
+
 /* Timeline Item (Zig-Zag Row) */
 .work__item {
   position: relative;
@@ -2094,6 +2098,7 @@ img {
 /*=============== BREAKPOINTS ===============*/
 /* For mobile devices under 768px */
 @media screen and (max-width: 767px) {
+
   /* Navigation on mobile */
   .nav {
     height: auto;
@@ -2153,7 +2158,7 @@ img {
 
   .home__data-left {
     align-self: flex-start;
-    padding-left: 0;
+    padding-left: 2rem;
     padding-right: 0;
     margin-top: 7rem;
     margin-bottom: 1rem;
@@ -2206,7 +2211,7 @@ img {
   /* Social icons along left side on mobile */
   .home__social {
     position: absolute;
-    left: 0;
+    left: 2rem;
     top: 50%;
     transform: translateY(-50%);
     bottom: auto;
@@ -2228,7 +2233,7 @@ img {
   /* Vertical RESUME link on right side on mobile */
   .home__cv {
     position: absolute;
-    right: 0;
+    right: 2rem;
     bottom: 4.5rem;
     top: auto;
     writing-mode: vertical-rl;
@@ -2508,7 +2513,9 @@ img {
 }
 
 /* Custom cursor is hidden for touch/mobile devices */
-@media (pointer: coarse), (max-width: 1024px) {
+@media (pointer: coarse),
+(max-width: 1024px) {
+
   .cursor,
   .cursor-dot {
     display: none !important;
