@@ -13,6 +13,7 @@
 
    <!--=============== CSS ===============-->
    <link rel="stylesheet" href="./css/styles.css">
+   <link rel="stylesheet" href="./css/project-detail.css">
 
    <title>Tushar Patel — Creative Full Stack Developer</title>
 </head>
@@ -137,7 +138,7 @@
          <div class="projects__container">
             <div class="projects__track" id="projects-track">
                <!-- Project 1 -->
-               <a href="project/project-analog-clock.html" class="projects__card"
+               <a href="#project-analog-clock" data-project="analog-clock" class="projects__card project-card-trigger"
                   aria-label="View Modern Analog Clock Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -157,7 +158,7 @@
                </a>
 
                <!-- Project 2 -->
-               <a href="project/project-taskmaster.html" class="projects__card"
+               <a href="#project-taskmaster" data-project="taskmaster" class="projects__card project-card-trigger"
                   aria-label="View TaskMaster Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -177,7 +178,7 @@
                </a>
 
                <!-- Project 3 -->
-               <a href="project/project-calculator.html" class="projects__card"
+               <a href="#project-calculator" data-project="calculator" class="projects__card project-card-trigger"
                   aria-label="View Digital Scientific Calculator Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -197,7 +198,7 @@
                </a>
 
                <!-- Project 4 -->
-               <a href="project/project-stopwatch.html" class="projects__card"
+               <a href="#project-stopwatch" data-project="stopwatch" class="projects__card project-card-trigger"
                   aria-label="View Precision Stopwatch Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -218,7 +219,7 @@
                </a>
 
                <!-- Project 5 -->
-               <a href="project/project-login-signup.html" class="projects__card"
+               <a href="#project-login-signup" data-project="login-signup" class="projects__card project-card-trigger"
                   aria-label="View Modern Login & Sign Up Form Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -239,7 +240,7 @@
                </a>
 
                <!-- Project 6 -->
-               <a href="project/project-amazon-clone.html" class="projects__card"
+               <a href="#project-amazon-clone" data-project="amazon-clone" class="projects__card project-card-trigger"
                   aria-label="View Amazon Clone Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -259,7 +260,7 @@
                </a>
 
                <!-- Project 7 -->
-               <a href="project/project-spotify-clone.html" class="projects__card"
+               <a href="#project-spotify-clone" data-project="spotify-clone" class="projects__card project-card-trigger"
                   aria-label="View Spotify Web Player Clone Project Details">
                   <div class="home__blob"></div>
                   <div class="projects__content">
@@ -758,7 +759,7 @@
                         <span>Animation</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-analog-clock.html" class="projects__modal-action">
+                        <a href="#project-analog-clock" data-project="analog-clock" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -796,7 +797,7 @@
                         <span>LocalStorage</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-taskmaster.html" class="projects__modal-action">
+                        <a href="#project-taskmaster" data-project="taskmaster" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -834,7 +835,7 @@
                         <span>Math Engine</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-calculator.html" class="projects__modal-action">
+                        <a href="#project-calculator" data-project="calculator" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -872,7 +873,7 @@
                         <span>Chronograph</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-stopwatch.html" class="projects__modal-action">
+                        <a href="#project-stopwatch" data-project="stopwatch" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -910,7 +911,7 @@
                         <span>Validation</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-login-signup.html" class="projects__modal-action">
+                        <a href="#project-login-signup" data-project="login-signup" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -948,7 +949,7 @@
                         <span>Cart System</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-amazon-clone.html" class="projects__modal-action">
+                        <a href="#project-amazon-clone" data-project="amazon-clone" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -986,7 +987,7 @@
                         <span>Web Audio</span>
                      </div>
                      <div class="projects__modal-card-footer">
-                        <a href="project/project-spotify-clone.html" class="projects__modal-action">
+                        <a href="#project-spotify-clone" data-project="spotify-clone" class="projects__modal-action project-open-case">
                            <span>Case Study</span>
                            <i class="ri-arrow-right-line"></i>
                         </a>
@@ -1008,6 +1009,41 @@
       </div>
    </div>
 
+   <!--==================== CASE STUDY POPUP MODAL ====================-->
+   <div class="case-modal" id="case-study-modal" role="dialog" aria-modal="true"
+      aria-labelledby="case-study-title" aria-hidden="true">
+      <div class="case-modal__overlay" id="case-modal-overlay"></div>
+
+      <div class="case-modal__container">
+         <!-- Ambient Glow Blobs -->
+         <div class="projects__modal-blob projects__modal-blob--1"></div>
+         <div class="projects__modal-blob projects__modal-blob--2"></div>
+
+         <!-- Modal Sticky Header -->
+         <div class="case-modal__header">
+            <button class="case__back-btn" id="case-modal-back" type="button" aria-label="Close Case Study">
+               <i class="ri-arrow-left-line"></i>
+               <span>Back to Projects</span>
+            </button>
+
+            <div class="case__status-pill">
+               <span class="dot"></span>
+               <span>Case Study</span>
+            </div>
+
+            <button class="projects__modal-close" id="case-modal-close" type="button" aria-label="Close Case Study">
+               <i class="ri-close-line"></i>
+               <span class="projects__modal-close-hint">Esc</span>
+            </button>
+         </div>
+
+         <!-- Modal Body (Dynamic Case Study Content) -->
+         <div class="case-modal__body" id="case-study-body">
+            <!-- Dynamically populated via js/main.js -->
+         </div>
+      </div>
+   </div>
+
    <!--=============== ANIME JS ===============-->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
 
@@ -1020,3 +1056,4 @@
 </body>
 
 </html>
+(no newline at end of file)
