@@ -1095,18 +1095,29 @@ if ('mediaSession' in navigator) {
 
 const projectOrder = ['analog-clock', 'taskmaster', 'calculator', 'stopwatch', 'login-signup', 'amazon-clone', 'spotify-clone'];
 
+function escapeHtml(str) {
+   if (!str) return '';
+   return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+}
+
 /*==================== FULL CASE STUDY STANDALONE VIEW (NEW WEB PAGE) ====================*/
 function renderStandaloneCaseStudy(projectId) {
-   const p = caseStudiesData[projectId];
-   const caseStudyView = document.getElementById('case-study-view');
-   const portfolioView = document.getElementById('portfolio-view');
-   if (!p || !caseStudyView) return;
+   try {
+      const p = caseStudiesData[projectId];
+      const caseStudyView = document.getElementById('case-study-view');
+      const portfolioView = document.getElementById('portfolio-view');
+      if (!p || !caseStudyView) return;
 
-   // Hide portfolio view and show case study full page
-   if (portfolioView) portfolioView.style.display = 'none';
-   caseStudyView.style.display = 'block';
-   document.body.classList.add('case-study-page');
-   document.title = `${p.title} — Case Study | Tushar Patel`;
+      // Hide portfolio view and show case study full page
+      if (portfolioView) portfolioView.style.display = 'none';
+      caseStudyView.style.display = 'block';
+      document.body.classList.add('case-study-page');
+      document.title = `${p.title} — Case Study | Tushar Patel`;
 
    const currentIndex = projectOrder.indexOf(projectId);
    const prevIndex = (currentIndex - 1 + projectOrder.length) % projectOrder.length;
@@ -1339,7 +1350,7 @@ function renderStandaloneCaseStudy(projectId) {
                <!-- CASE STUDY FOOTER / NAVIGATION -->
                <footer class="case-footer">
                   <div class="case-footer__nav">
-                     <a href="?project=${prevProj.id}" class="case-nav-btn case-nav-btn--prev">
+                     <a href="index.html?project=${prevProj.id}" class="case-nav-btn case-nav-btn--prev">
                         <div class="case-nav-btn__icon">
                            <i class="ri-arrow-left-line"></i>
                         </div>
@@ -1349,7 +1360,7 @@ function renderStandaloneCaseStudy(projectId) {
                         </div>
                      </a>
 
-                     <a href="?project=${nextProj.id}" class="case-nav-btn case-nav-btn--next">
+                     <a href="index.html?project=${nextProj.id}" class="case-nav-btn case-nav-btn--next">
                         <div class="case-nav-btn__content">
                            <span class="case-nav-btn__label">Next Project</span>
                            <h3 class="case-nav-btn__title">${nextProj.title}</h3>
@@ -1365,10 +1376,13 @@ function renderStandaloneCaseStudy(projectId) {
       </main>
    `;
 
-   window.scrollTo({ top: 0, behavior: 'instant' });
+      window.scrollTo(0, 0);
 
-   // Initialize ScrollSpy for Directory
-   initCaseStudyScrollSpy();
+      // Initialize ScrollSpy for Directory
+      initCaseStudyScrollSpy();
+   } catch (err) {
+      console.error('Error rendering case study:', err);
+   }
 }
 
 function initCaseStudyScrollSpy() {
@@ -1400,17 +1414,37 @@ function initCaseStudyScrollSpy() {
 // Router for Standalone Case Study vs Homepage
 function initPageRouter() {
    const urlParams = new URLSearchParams(window.location.search);
-   const projectId = urlParams.get('project');
+   let projectId = urlParams.get('project');
+
+   if (!projectId && window.location.hash) {
+      const cleanHash = window.location.hash.replace(/^#/, '');
+      if (cleanHash.startsWith('project=')) {
+         projectId = cleanHash.replace('project=', '');
+      } else if (cleanHash.startsWith('project-')) {
+         projectId = cleanHash.replace('project-', '');
+      } else if (caseStudiesData[cleanHash]) {
+         projectId = cleanHash;
+      }
+   }
+
+   const portfolioView = document.getElementById('portfolio-view');
+   const caseStudyView = document.getElementById('case-study-view');
 
    if (projectId && caseStudiesData[projectId]) {
       renderStandaloneCaseStudy(projectId);
    } else {
-      const portfolioView = document.getElementById('portfolio-view');
-      const caseStudyView = document.getElementById('case-study-view');
       if (portfolioView) portfolioView.style.display = 'block';
-      if (caseStudyView) caseStudyView.style.display = 'none';
+      if (caseStudyView) {
+         caseStudyView.style.display = 'none';
+         caseStudyView.innerHTML = '';
+      }
+      document.body.classList.remove('case-study-page');
+      document.title = 'Tushar Patel — Creative Full Stack Developer';
    }
 }
+
+window.addEventListener('hashchange', initPageRouter);
+window.addEventListener('popstate', initPageRouter);
 
 if (document.readyState === 'loading') {
    document.addEventListener('DOMContentLoaded', initPageRouter);
