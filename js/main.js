@@ -1095,22 +1095,18 @@ if ('mediaSession' in navigator) {
 
 const projectOrder = ['analog-clock', 'taskmaster', 'calculator', 'stopwatch', 'login-signup', 'amazon-clone', 'spotify-clone'];
 
-const caseModal = document.getElementById('case-study-modal');
-const caseModalOverlay = document.getElementById('case-modal-overlay');
-const caseModalBack = document.getElementById('case-modal-back');
-const caseModalClose = document.getElementById('case-modal-close');
-const caseStudyBody = document.getElementById('case-study-body');
-
-function escapeHtml(str) {
-   return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-}
-
-function renderCaseStudy(projectId) {
+/*==================== FULL CASE STUDY STANDALONE VIEW (NEW WEB PAGE) ====================*/
+function renderStandaloneCaseStudy(projectId) {
    const p = caseStudiesData[projectId];
-   if (!p || !caseStudyBody) return;
+   const caseStudyView = document.getElementById('case-study-view');
+   const portfolioView = document.getElementById('portfolio-view');
+   if (!p || !caseStudyView) return;
+
+   // Hide portfolio view and show case study full page
+   if (portfolioView) portfolioView.style.display = 'none';
+   caseStudyView.style.display = 'block';
+   document.body.classList.add('case-study-page');
+   document.title = `${p.title} — Case Study | Tushar Patel`;
 
    const currentIndex = projectOrder.indexOf(projectId);
    const prevIndex = (currentIndex - 1 + projectOrder.length) % projectOrder.length;
@@ -1119,257 +1115,306 @@ function renderCaseStudy(projectId) {
    const prevProj = caseStudiesData[projectOrder[prevIndex]];
    const nextProj = caseStudiesData[projectOrder[nextIndex]];
 
-   caseStudyBody.innerHTML = `
-      <div class="case-study-view">
-         <!-- Hero Section -->
-         <section class="case-hero">
+   caseStudyView.innerHTML = `
+      <!-- Ambient Glowing Background Elements -->
+      <div class="case__glow case__glow--top-left"></div>
+      <div class="case__glow case__glow--top-right"></div>
+      <div class="case__glow case__glow--mid"></div>
+
+      <!--==================== TOP NAVIGATION HEADER ====================-->
+      <header class="case__header" id="case-header">
+         <div class="case__nav container">
+            <a href="index.html#projects" class="case__back-btn" id="case-back-btn">
+               <i class="ri-arrow-left-line"></i>
+               <span>Back to Projects</span>
+            </a>
+
+            <a href="index.html" class="case__brand">Tushar</a>
+
+            <div class="case__nav-actions">
+               <div class="case__status-pill">
+                  <span class="dot"></span>
+                  <span>Available for work</span>
+               </div>
+            </div>
+         </div>
+      </header>
+
+      <!--==================== HERO SECTION ====================-->
+      <section class="case-hero" id="overview">
+         <div class="container">
             <div class="case-hero__content">
                <span class="case-hero__eyebrow">
-                  <i class="${p.eyebrowIcon}"></i> ${p.eyebrow}
+                  <i class="${p.eyebrowIcon}"></i>
+                  ${p.eyebrow}
                </span>
+
                <div class="case-hero__title-row">
-                  <h1 class="case-hero__title" id="case-study-title">${p.title}</h1>
+                  <h1 class="case-hero__title">${p.title}</h1>
                   <span class="case-hero__version-badge">${p.version}</span>
                </div>
+
                <p class="case-hero__desc">${p.description}</p>
+
                <div class="case-hero__buttons">
-                  <a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" class="case-btn case-btn--primary">
-                     <span>Visit Live Project</span>
+                  <a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer"
+                     class="case-btn case-btn--primary">
+                     <span>Visit ${p.title}</span>
                      <i class="ri-arrow-right-up-line"></i>
                   </a>
-                  <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="case-btn case-btn--secondary">
-                     <i class="ri-github-line"></i>
+                  <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer"
+                     class="case-btn case-btn--secondary">
+                     <i class="ri-code-s-slash-line"></i>
                      <span>Source Code</span>
+                  </a>
+                  <a href="#problem-solution" class="case-btn case-btn--secondary">
+                     <span>Explore Case Study</span>
+                     <i class="ri-arrow-down-line"></i>
                   </a>
                </div>
             </div>
 
             <!-- Hero Showcase Image -->
-            <div class="case-hero__showcase">
-               <div class="case-hero__img-wrap">
-                  <img src="${p.image}" alt="${p.title}" class="case-hero__img">
+            <div class="case-hero__showcase" id="showcase">
+               <div class="case-hero__img-wrap" style="width: 100%; max-height: 520px;">
+                  <img src="${p.image}" alt="${p.title} Interface Showcase" class="case-hero__img">
+                  <span class="case-hero__img-tag">Aesthetic UI Preview</span>
                </div>
             </div>
-         </section>
+         </div>
+      </section>
 
-         <!-- SECTION: Problem & Solution -->
-         <section class="case-section">
-            <span class="case-section__num">01</span>
-            <h2 class="case-section__title">The Problem &amp; Solution</h2>
-            <div class="problem-solution-grid">
-               <div class="ps-text-col">
-                  <div class="problem-card">
-                     <span class="problem-card__label">THE PROBLEM</span>
-                     <p class="problem-card__desc">${p.problem}</p>
-                  </div>
-                  <div class="solution-block">
-                     <span class="solution-block__label">THE SOLUTION</span>
-                     <h3 class="solution-block__title">${p.solutionTitle}</h3>
-                     <p class="solution-block__desc">${p.solution}</p>
-                  </div>
-               </div>
-               <div class="ps-image-card">
-                  <div class="ps-image-card__header">
-                     <span class="ps-image-card__title">${p.title}</span>
-                     <span class="ps-image-card__badge">${p.version}</span>
-                  </div>
-                  <img src="${p.secondaryImage}" alt="${p.title}" class="ps-image-card__img" loading="lazy">
-               </div>
-            </div>
-         </section>
+      <!--==================== MAIN CASE STUDY BODY ====================-->
+      <main class="case-main">
+         <div class="container case-layout">
+            <!-- Left Sticky Directory -->
+            <aside class="case-directory">
+               <h4 class="case-directory__heading">Directory</h4>
+               <nav class="case-directory__list">
+                  <a href="#overview" class="case-directory__link active" data-section="overview">
+                     <span class="num">01</span>
+                     <span>Overview</span>
+                  </a>
+                  <a href="#problem-solution" class="case-directory__link" data-section="problem-solution">
+                     <span class="num">02</span>
+                     <span>The Problem &amp; Solution</span>
+                  </a>
+                  <a href="#key-features" class="case-directory__link" data-section="key-features">
+                     <span class="num">03</span>
+                     <span>Key Features</span>
+                  </a>
+                  <a href="#architecture" class="case-directory__link" data-section="architecture">
+                     <span class="num">04</span>
+                     <span>Architecture</span>
+                  </a>
+                  <a href="#metrics" class="case-directory__link" data-section="metrics">
+                     <span class="num">05</span>
+                     <span>Performance</span>
+                  </a>
+                  <a href="#challenges" class="case-directory__link" data-section="challenges">
+                     <span class="num">06</span>
+                     <span>Challenges &amp; Learnings</span>
+                  </a>
+               </nav>
+            </aside>
 
-         <!-- SECTION: Key Features Developed -->
-         <section class="case-section">
-            <span class="case-section__num">02</span>
-            <h2 class="case-section__title">Key Features Developed</h2>
-            <div class="features-split-grid">
-               <div class="features-list">
-                  ${p.features.map(f => `
-                     <div class="feature-item">
-                        <div class="feature-icon">
-                           <i class="${f.icon}"></i>
+            <!-- Right Detailed Content Sections -->
+            <div class="case-content">
+               <!-- SECTION 02: THE PROBLEM & SOLUTION -->
+               <section class="case-section" id="problem-solution">
+                  <span class="case-section__num">01</span>
+                  <h2 class="case-section__title">The Problem &amp; Solution</h2>
+
+                  <div class="problem-solution-grid">
+                     <div class="ps-text-col">
+                        <div class="problem-card">
+                           <span class="problem-card__label">THE PROBLEM</span>
+                           <p class="problem-card__desc">${p.problem}</p>
                         </div>
-                        <div class="feature-content">
-                           <h4>${f.title}</h4>
-                           <p>${f.desc}</p>
+
+                        <div class="solution-block">
+                           <span class="solution-block__label">THE SOLUTION</span>
+                           <h3 class="solution-block__title">${p.solutionTitle}</h3>
+                           <p class="solution-block__desc">${p.solution}</p>
                         </div>
                      </div>
-                  `).join('')}
-               </div>
-            </div>
-         </section>
 
-         <!-- SECTION: Architecture & Code -->
-         <section class="case-section">
-            <span class="case-section__num">03</span>
-            <h2 class="case-section__title">Technical Architecture &amp; Code</h2>
-            <div class="architecture-grid">
-               <div class="code-snippet-box">
-                  <div class="code-snippet-header">
-                     <div class="code-snippet-dots">
-                        <span class="code-dot code-dot--red"></span>
-                        <span class="code-dot code-dot--yellow"></span>
-                        <span class="code-dot code-dot--green"></span>
-                     </div>
-                     <span class="code-snippet-filename">${p.codeFilename}</span>
-                     <span>ES6+</span>
-                  </div>
-                  <pre class="code-snippet-body"><code>${escapeHtml(p.codeSnippet)}</code></pre>
-               </div>
-               <div class="arch-cards">
-                  ${p.archPoints.map(a => `
-                     <div class="arch-card">
-                        <h4>${a.title}</h4>
-                        <p>${a.desc}</p>
-                     </div>
-                  `).join('')}
-               </div>
-            </div>
-         </section>
-
-         <!-- SECTION: Performance & Benchmarks -->
-         <section class="case-section">
-            <span class="case-section__num">04</span>
-            <h2 class="case-section__title">Performance &amp; Benchmarks</h2>
-            <div class="metrics-row">
-               ${p.metrics.map(m => `
-                  <div class="metric-card">
-                     <div class="metric-val">${m.val}</div>
-                     <div class="metric-label">${m.label}</div>
-                  </div>
-               `).join('')}
-            </div>
-         </section>
-
-         <!-- SECTION: Challenges & Solutions -->
-         <section class="case-section">
-            <span class="case-section__num">05</span>
-            <h2 class="case-section__title">Key Challenges &amp; Solutions</h2>
-            <div class="challenges-grid">
-               ${p.challenges.map((c, i) => `
-                  <div class="challenge-card">
-                     <span class="challenge-tag challenge-tag--red">Challenge 0${i + 1}</span>
-                     <h4>${c.title}</h4>
-                     <p>${c.desc}</p>
-                     <div class="challenge-resolution">
-                        <strong>Solution:</strong> ${c.solution}
+                     <div class="ps-image-card">
+                        <div class="ps-image-card__header">
+                           <span class="ps-image-card__title">${p.title}</span>
+                           <span class="ps-image-card__badge">${p.version}</span>
+                        </div>
+                        <img src="${p.secondaryImage}" alt="${p.title} High Resolution Showcase"
+                           class="ps-image-card__img" loading="lazy">
                      </div>
                   </div>
-               `).join('')}
-            </div>
-         </section>
+               </section>
 
-         <!-- Modal Footer Navigation -->
-         <footer class="case-footer">
-            <div class="case-footer__nav">
-               <button type="button" class="case-nav-btn case-nav-btn--prev" data-nav-target="${prevProj.id}">
-                  <div class="case-nav-btn__icon">
-                     <i class="ri-arrow-left-line"></i>
-                  </div>
-                  <div class="case-nav-btn__content">
-                     <span class="case-nav-btn__label">Previous Project</span>
-                     <h3 class="case-nav-btn__title">${prevProj.title}</h3>
-                  </div>
-               </button>
+               <!-- SECTION 03: KEY FEATURES DEVELOPED -->
+               <section class="case-section" id="key-features">
+                  <span class="case-section__num">02</span>
+                  <h2 class="case-section__title">Key Features Developed</h2>
 
-               <button type="button" class="case-nav-btn case-nav-btn--next" data-nav-target="${nextProj.id}">
-                  <div class="case-nav-btn__content">
-                     <span class="case-nav-btn__label">Next Project</span>
-                     <h3 class="case-nav-btn__title">${nextProj.title}</h3>
+                  <div class="features-split-grid" style="grid-template-columns: 1fr;">
+                     <div class="features-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+                        ${p.features.map(f => `
+                           <div class="feature-item">
+                              <div class="feature-icon">
+                                 <i class="${f.icon}"></i>
+                              </div>
+                              <div class="feature-content">
+                                 <h4>${f.title}</h4>
+                                 <p>${f.desc}</p>
+                              </div>
+                           </div>
+                        `).join('')}
+                     </div>
                   </div>
-                  <div class="case-nav-btn__icon">
-                     <i class="ri-arrow-right-line"></i>
+               </section>
+
+               <!-- SECTION 04: TECHNICAL ARCHITECTURE -->
+               <section class="case-section" id="architecture">
+                  <span class="case-section__num">03</span>
+                  <h2 class="case-section__title">Technical Architecture &amp; Code</h2>
+
+                  <div class="architecture-grid">
+                     <div class="code-snippet-box">
+                        <div class="code-snippet-header">
+                           <div class="code-snippet-dots">
+                              <span class="code-dot code-dot--red"></span>
+                              <span class="code-dot code-dot--yellow"></span>
+                              <span class="code-dot code-dot--green"></span>
+                           </div>
+                           <span class="code-snippet-filename">${p.codeFilename}</span>
+                           <span>ES6+</span>
+                        </div>
+                        <pre class="code-snippet-body"><code>${escapeHtml(p.codeSnippet)}</code></pre>
+                     </div>
+
+                     <div class="arch-cards">
+                        ${p.archPoints.map(a => `
+                           <div class="arch-card">
+                              <h4>${a.title}</h4>
+                              <p>${a.desc}</p>
+                           </div>
+                        `).join('')}
+                     </div>
                   </div>
-               </button>
+               </section>
+
+               <!-- SECTION 05: PERFORMANCE & BENCHMARKS -->
+               <section class="case-section" id="metrics">
+                  <span class="case-section__num">04</span>
+                  <h2 class="case-section__title">Performance &amp; Benchmarks</h2>
+
+                  <div class="metrics-row">
+                     ${p.metrics.map(m => `
+                        <div class="metric-card">
+                           <div class="metric-val">${m.val}</div>
+                           <div class="metric-label">${m.label}</div>
+                        </div>
+                     `).join('')}
+                  </div>
+               </section>
+
+               <!-- SECTION 06: CHALLENGES & LEARNINGS -->
+               <section class="case-section" id="challenges">
+                  <span class="case-section__num">05</span>
+                  <h2 class="case-section__title">Key Challenges &amp; Solutions</h2>
+
+                  <div class="challenges-grid">
+                     ${p.challenges.map((c, i) => `
+                        <div class="challenge-card">
+                           <span class="challenge-tag challenge-tag--red">Challenge 0${i + 1}</span>
+                           <h4>${c.title}</h4>
+                           <p>${c.desc}</p>
+                           <div class="challenge-resolution">
+                              <strong>Solution:</strong> ${c.solution}
+                           </div>
+                        </div>
+                     `).join('')}
+                  </div>
+               </section>
+
+               <!-- CASE STUDY FOOTER / NAVIGATION -->
+               <footer class="case-footer">
+                  <div class="case-footer__nav">
+                     <a href="?project=${prevProj.id}" class="case-nav-btn case-nav-btn--prev">
+                        <div class="case-nav-btn__icon">
+                           <i class="ri-arrow-left-line"></i>
+                        </div>
+                        <div class="case-nav-btn__content">
+                           <span class="case-nav-btn__label">Previous Project</span>
+                           <h3 class="case-nav-btn__title">${prevProj.title}</h3>
+                        </div>
+                     </a>
+
+                     <a href="?project=${nextProj.id}" class="case-nav-btn case-nav-btn--next">
+                        <div class="case-nav-btn__content">
+                           <span class="case-nav-btn__label">Next Project</span>
+                           <h3 class="case-nav-btn__title">${nextProj.title}</h3>
+                        </div>
+                        <div class="case-nav-btn__icon">
+                           <i class="ri-arrow-right-line"></i>
+                        </div>
+                     </a>
+                  </div>
+               </footer>
             </div>
-         </footer>
-      </div>
+         </div>
+      </main>
    `;
 
-   caseStudyBody.scrollTop = 0;
+   window.scrollTo({ top: 0, behavior: 'instant' });
 
-   // Bind footer previous/next buttons
-   caseStudyBody.querySelectorAll('[data-nav-target]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-         e.preventDefault();
-         const targetId = btn.dataset.navTarget;
-         openCaseStudyModal(targetId);
+   // Initialize ScrollSpy for Directory
+   initCaseStudyScrollSpy();
+}
+
+function initCaseStudyScrollSpy() {
+   const sections = document.querySelectorAll('.case-section, .case-hero');
+   const dirLinks = document.querySelectorAll('.case-directory__link');
+
+   window.addEventListener('scroll', () => {
+      let currentSection = 'overview';
+      const scrollPos = window.scrollY + 180;
+
+      sections.forEach(sec => {
+         const top = sec.offsetTop;
+         const height = sec.offsetHeight;
+         if (scrollPos >= top && scrollPos < top + height) {
+            currentSection = sec.getAttribute('id');
+         }
       });
-   });
+
+      dirLinks.forEach(link => {
+         if (link.getAttribute('data-section') === currentSection) {
+            link.classList.add('active');
+         } else {
+            link.classList.remove('active');
+         }
+      });
+   }, { passive: true });
 }
 
-function openCaseStudyModal(projectId) {
-   if (!caseModal || !caseStudiesData[projectId]) return;
-   renderCaseStudy(projectId);
-   caseModal.classList.add('case-modal--open');
-   caseModal.setAttribute('aria-hidden', 'false');
-   document.body.style.overflow = 'hidden';
-   try {
-      history.pushState(null, '', '#project-' + projectId);
-   } catch (e) {}
-}
+// Router for Standalone Case Study vs Homepage
+function initPageRouter() {
+   const urlParams = new URLSearchParams(window.location.search);
+   const projectId = urlParams.get('project');
 
-function closeCaseStudyModal() {
-   if (!caseModal) return;
-   caseModal.classList.remove('case-modal--open');
-   caseModal.setAttribute('aria-hidden', 'true');
-   document.body.style.overflow = '';
-   if (window.location.hash.startsWith('#project-')) {
-      try {
-         history.pushState(null, '', window.location.pathname + '#projects');
-      } catch (e) {}
+   if (projectId && caseStudiesData[projectId]) {
+      renderStandaloneCaseStudy(projectId);
+   } else {
+      const portfolioView = document.getElementById('portfolio-view');
+      const caseStudyView = document.getElementById('case-study-view');
+      if (portfolioView) portfolioView.style.display = 'block';
+      if (caseStudyView) caseStudyView.style.display = 'none';
    }
 }
 
-if (caseModal) {
-   if (caseModalOverlay) caseModalOverlay.addEventListener('click', closeCaseStudyModal);
-   if (caseModalBack) caseModalBack.addEventListener('click', closeCaseStudyModal);
-   if (caseModalClose) caseModalClose.addEventListener('click', closeCaseStudyModal);
-
-   document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && caseModal.classList.contains('case-modal--open')) {
-         closeCaseStudyModal();
-      }
-   });
-
-   // Card clicks in marquee
-   document.querySelectorAll('.project-card-trigger').forEach(card => {
-      card.addEventListener('click', (e) => {
-         e.preventDefault();
-         const id = card.dataset.project;
-         if (id) openCaseStudyModal(id);
-      });
-   });
-
-   // Case study button clicks in All Projects modal
-   document.querySelectorAll('.project-open-case').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-         e.preventDefault();
-         const id = btn.dataset.project;
-         // Close all projects modal first
-         const projectsModal = document.getElementById('projects-modal');
-         if (projectsModal) {
-            projectsModal.classList.remove('projects__modal--open');
-            projectsModal.setAttribute('aria-hidden', 'true');
-         }
-         if (id) openCaseStudyModal(id);
-      });
-   });
-
-   // Check initial hash on load
-   const checkHash = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#project-')) {
-         const id = hash.replace('#project-', '');
-         if (caseStudiesData[id]) {
-            openCaseStudyModal(id);
-         }
-      } else if (caseModal.classList.contains('case-modal--open')) {
-         closeCaseStudyModal();
-      }
-   };
-
-   window.addEventListener('hashchange', checkHash);
-   checkHash();
+if (document.readyState === 'loading') {
+   document.addEventListener('DOMContentLoaded', initPageRouter);
+} else {
+   initPageRouter();
 }
 
