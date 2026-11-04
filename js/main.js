@@ -215,7 +215,7 @@ if (projectsContainer && projectsTrack) {
 
 
 
-   /*=============== WORK TABS ===============*/
+/*=============== WORK TABS ===============*/
 const tabs = document.querySelectorAll('[data-target]');
 const tabContents = document.querySelectorAll('[data-content]');
 
@@ -297,7 +297,7 @@ if (contactButton && contactTooltip) {
    });
 }
 
-/*=============== CURRENT YEAR OF THE FOOTER ===============*/ 
+/*=============== CURRENT YEAR OF THE FOOTER ===============*/
 const currentYearEl = document.getElementById('current-year');
 if (currentYearEl) {
    currentYearEl.textContent = new Date().getFullYear();
@@ -1121,14 +1121,14 @@ function renderStandaloneCaseStudy(projectId) {
       document.body.classList.add('case-study-page');
       document.title = `${p.title} — Case Study | Tushar Patel`;
 
-   const currentIndex = projectOrder.indexOf(projectId);
-   const prevIndex = (currentIndex - 1 + projectOrder.length) % projectOrder.length;
-   const nextIndex = (currentIndex + 1) % projectOrder.length;
+      const currentIndex = projectOrder.indexOf(projectId);
+      const prevIndex = (currentIndex - 1 + projectOrder.length) % projectOrder.length;
+      const nextIndex = (currentIndex + 1) % projectOrder.length;
 
-   const prevProj = caseStudiesData[projectOrder[prevIndex]];
-   const nextProj = caseStudiesData[projectOrder[nextIndex]];
+      const prevProj = caseStudiesData[projectOrder[prevIndex]];
+      const nextProj = caseStudiesData[projectOrder[nextIndex]];
 
-   caseStudyView.innerHTML = `
+      caseStudyView.innerHTML = `
       <!-- Ambient Glowing Background Elements -->
       <div class="case__glow case__glow--top-left"></div>
       <div class="case__glow case__glow--top-right"></div>
