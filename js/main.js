@@ -82,31 +82,34 @@ if (projectsContainer && projectsTrack) {
    projectsContainer.addEventListener('touchstart', () => isPaused = true, { passive: true });
    projectsContainer.addEventListener('touchend', () => pauseTemporarily(1800), { passive: true });
 
+   let maxScroll = 0;
+   const updateMaxScroll = () => {
+      maxScroll = Math.max(0, projectsTrack.scrollWidth - projectsContainer.clientWidth);
+   };
+   updateMaxScroll();
+   window.addEventListener('resize', updateMaxScroll, { passive: true });
+
    function stepProjectsAutoScroll() {
-      if (!isPaused) {
-         const maxScroll = Math.max(0, projectsTrack.scrollWidth - projectsContainer.clientWidth);
+      if (!isPaused && maxScroll > 0) {
+         if (scrollDirection === 1) {
+            // Scrolling forward towards the last project
+            projectsContainer.scrollLeft += scrollSpeed;
 
-         if (maxScroll > 0) {
-            if (scrollDirection === 1) {
-               // Scrolling forward towards the last project
-               projectsContainer.scrollLeft += scrollSpeed;
+            if (projectsContainer.scrollLeft >= maxScroll - 1) {
+               // Reached the last project! Pause, then reverse direction towards first
+               projectsContainer.scrollLeft = maxScroll;
+               scrollDirection = -1;
+               pauseTemporarily(2000); // 2 second pause when reaching last project
+            }
+         } else {
+            // Scrolling backward from last project to first project
+            projectsContainer.scrollLeft -= scrollSpeed;
 
-               if (projectsContainer.scrollLeft >= maxScroll - 1) {
-                  // Reached the last project! Pause, then reverse direction towards first
-                  projectsContainer.scrollLeft = maxScroll;
-                  scrollDirection = -1;
-                  pauseTemporarily(2000); // 2 second pause when reaching last project
-               }
-            } else {
-               // Scrolling backward from last project to first project
-               projectsContainer.scrollLeft -= scrollSpeed;
-
-               if (projectsContainer.scrollLeft <= 1) {
-                  // Reached the first project! Pause, then reverse direction forward again
-                  projectsContainer.scrollLeft = 0;
-                  scrollDirection = 1;
-                  pauseTemporarily(2000); // 2 second pause when reaching first project, then repeat
-               }
+            if (projectsContainer.scrollLeft <= 1) {
+               // Reached the first project! Pause, then reverse direction forward again
+               projectsContainer.scrollLeft = 0;
+               scrollDirection = 1;
+               pauseTemporarily(2000); // 2 second pause when reaching first project, then repeat
             }
          }
       }
@@ -401,14 +404,15 @@ window.addEventListener('scroll', scrollActive, { passive: true });
 const cursor = document.getElementById('cursor');
 const cursorDot = document.getElementById('cursor-dot');
 
-if (cursor && cursorDot) {
-   let mouseX = window.innerWidth / 2;
-   let mouseY = window.innerHeight / 2;
-   let cursorX = mouseX;
-   let cursorY = mouseY;
+if (cursor && cursorDot && window.matchMedia('(pointer: fine)').matches) {
+   let mouseX = -100;
+   let mouseY = -100;
+   let cursorX = -100;
+   let cursorY = -100;
    let isFirstMove = true;
-   // Trailing delay factor: lower value adds more delayed trailing lag (floaty inertia)
-   const TRAIL_SPEED = 0.08;
+   let isHovered = false;
+   let isClicking = false;
+   const TRAIL_SPEED = 0.14;
 
    document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
@@ -416,27 +420,22 @@ if (cursor && cursorDot) {
       if (isFirstMove) {
          cursorX = mouseX;
          cursorY = mouseY;
-         cursor.style.left = `${cursorX}px`;
-         cursor.style.top = `${cursorY}px`;
          cursor.classList.add('visible');
          cursorDot.classList.add('visible');
          isFirstMove = false;
       }
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-   });
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+   }, { passive: true });
 
-   // Smooth follow for outer ring with more delayed trailing lag
    const renderCursor = () => {
       cursorX += (mouseX - cursorX) * TRAIL_SPEED;
       cursorY += (mouseY - cursorY) * TRAIL_SPEED;
-      cursor.style.left = `${cursorX}px`;
-      cursor.style.top = `${cursorY}px`;
+      const scaleStr = isClicking ? ' scale(0.85)' : (isHovered ? ' scale(1.5)' : '');
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)${scaleStr}`;
       requestAnimationFrame(renderCursor);
    };
    requestAnimationFrame(renderCursor);
 
-   // Window enter / leave handling
    document.addEventListener('mouseleave', () => {
       cursor.classList.remove('visible');
       cursorDot.classList.remove('visible');
@@ -449,55 +448,58 @@ if (cursor && cursorDot) {
       }
    });
 
-   // Click feedback
    document.addEventListener('mousedown', () => {
+      isClicking = true;
       cursor.classList.add('clicking');
       cursorDot.classList.add('clicking');
    });
 
    document.addEventListener('mouseup', () => {
+      isClicking = false;
       cursor.classList.remove('clicking');
       cursorDot.classList.remove('clicking');
    });
 
-   // Hover effect for interactive elements with event delegation
    const isInteractive = (target) => {
       return target && target.closest && target.closest('a, button, .projects__card, .projects__modal-card, .services__card, .work__item, input, textarea, select, .theme-toggle, .scrollup, [role="button"], label, .case-btn, .case-nav-btn, .case__back-btn, .feature-item, .problem-card, .solution-block, .arch-card, .metric-card, .challenge-card');
    };
 
    document.addEventListener('mouseover', (e) => {
       if (isInteractive(e.target)) {
+         isHovered = true;
          cursor.classList.add('hovered');
       }
-   });
+   }, { passive: true });
 
    document.addEventListener('mouseout', (e) => {
       if (isInteractive(e.target)) {
+         isHovered = false;
          cursor.classList.remove('hovered');
       }
-   });
+   }, { passive: true });
 }
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 if (typeof ScrollReveal !== 'undefined') {
    const sr = ScrollReveal({
       origin: 'top',
-      distance: '60px',
-      duration: 1800,
-      delay: 200,
+      distance: '30px',
+      duration: 800,
+      delay: 100,
       reset: false,
    });
 
+   // Note: .home__image-container is rendered immediately without ScrollReveal delay for instant hero image loading
    sr.reveal('.home__data-left, .about__data');
-   sr.reveal('.home__image-container, .about__image-container', { origin: 'bottom', delay: 350 });
-   sr.reveal('.home__data-right', { origin: 'right', delay: 400 });
-   sr.reveal('.home__social', { origin: 'left', delay: 450 });
-   sr.reveal('.home__cv', { origin: 'right', delay: 450 });
-   sr.reveal('.projects__container', { delay: 300 });
-   sr.reveal('.work__tabs-container, .work__container', { delay: 300 });
-   sr.reveal('.services__card', { interval: 150 });
-   sr.reveal('.contact__box', { delay: 200 });
-   sr.reveal('.contact__group', { interval: 120, delay: 300 });
+   sr.reveal('.about__image-container', { origin: 'bottom', delay: 150 });
+   sr.reveal('.home__data-right', { origin: 'right', delay: 200 });
+   sr.reveal('.home__social', { origin: 'left', delay: 250 });
+   sr.reveal('.home__cv', { origin: 'right', delay: 250 });
+   sr.reveal('.projects__container', { delay: 150 });
+   sr.reveal('.work__tabs-container, .work__container', { delay: 150 });
+   sr.reveal('.services__card', { interval: 100 });
+   sr.reveal('.contact__box', { delay: 150 });
+   sr.reveal('.contact__group', { interval: 100, delay: 150 });
 }
 
 /*==================== IN-PAGE CASE STUDY MODAL ENGINE ====================*/
@@ -511,7 +513,7 @@ const caseStudiesData = {
       eyebrowIcon: 'ri-flashlight-line',
       eyebrow: 'HIGH-PRECISION WEB APPLICATION • TIMEPIECE UI',
       description: 'Engineered with sub-millisecond continuous 60 FPS rotational physics, dynamic Neumorphic ambient depth, and zero external dependencies. A study in mathematical UI rendering and responsive trigonometry.',
-      image: 'assets/img/projects-1.png',
+      image: 'assets/img/projects-1.jpg',
       secondaryImage: 'assets/img/aura-analog-clock.jpg',
       liveUrl: 'https://analog-clock-delta-vert.vercel.app/',
       githubUrl: 'https://github.com/tusr23/analog-clock',
@@ -598,8 +600,8 @@ function updateClockPhysics() {
       eyebrowIcon: 'ri-checkbox-circle-line',
       eyebrow: 'SMART PRODUCTIVITY • LOCAL STORAGE ENGINE',
       description: 'A high-performance, distraction-free productivity web application. Engineered with client-first LocalStorage persistence, dynamic category filtering, live progress telemetry, and responsive Neumorphic dark aesthetics with zero third-party dependencies.',
-      image: 'assets/img/projects-2.png',
-      secondaryImage: 'assets/img/taskmaster.png',
+      image: 'assets/img/projects-2.jpg',
+      secondaryImage: 'assets/img/projects-2.jpg',
       liveUrl: 'https://taskmaster-rust.vercel.app/',
       githubUrl: 'https://github.com/tusr23/taskmaster',
       problem: 'Most to-do web applications suffer from bloated framework dependencies, slow cold-boot times, intrusive account sign-ups, and fragile remote sync that breaks without network access. Users need an instant, privacy-focused task manager that works reliably offline.',
@@ -684,8 +686,8 @@ function saveAndRenderTasks(taskList) {
       eyebrowIcon: 'ri-calculator-line',
       eyebrow: 'MATHEMATICAL ENGINE • SCIENTIFIC COMPUTATION',
       description: 'A precision digital scientific calculator engineered for complex mathematical computation. Features trigonometric functions, logarithmic expressions, memory registers, safe precedence parsing, and an ultra-responsive dark glassmorphism interface.',
-      image: 'assets/img/projects-3.png',
-      secondaryImage: 'assets/img/digital-calculator.png',
+      image: 'assets/img/projects-3.jpg',
+      secondaryImage: 'assets/img/projects-3.jpg',
       liveUrl: 'https://digital-calculator-tawny.vercel.app/',
       githubUrl: 'https://github.com/tusr23/Digital-Calculator',
       problem: 'Online web calculators often rely on dangerous eval() execution, causing floating-point rounding bugs (like 0.1 + 0.2 = 0.30000000000000004), operator precedence confusion, and vulnerability to script injection.',
@@ -765,8 +767,8 @@ function sanitizeCompute(expr) {
       eyebrowIcon: 'ri-timer-flash-line',
       eyebrow: 'CHRONOGRAPH ENGINE • HIGH-PRECISION TIMING',
       description: 'An ultra-accurate digital chronograph built for high-performance timing applications. Engineered with drift-free performance.now() delta math, 60 FPS hardware-synchronized rendering, instant lap recording telemetry, and an immersive dark glassmorphic dashboard.',
-      image: 'assets/img/projects-4.png',
-      secondaryImage: 'assets/img/stopwatch.png',
+      image: 'assets/img/projects-4.jpg',
+      secondaryImage: 'assets/img/projects-4.jpg',
       liveUrl: 'https://stop-watch-drab-nine.vercel.app/',
       githubUrl: 'https://github.com/tusr23/Stop-Watch',
       problem: 'Typical JavaScript stopwatches increment an internal counter via setInterval(..., 10). Over time, thread blocking and timer throttling accumulate substantial clock drift, leading to inaccurate time measurements in sports or scientific testing.',
@@ -850,8 +852,8 @@ function stepStopwatch(timestamp) {
       eyebrowIcon: 'ri-shield-user-line',
       eyebrow: 'AUTHENTICATION UI • FORM VALIDATION ENGINE',
       description: 'A sleek, accessible authentication suite built with pure vanilla web technologies. Features smooth tab transitions between Sign In and Sign Up, real-time password entropy estimation, masked input reveals, and an ultra-modern dark glassmorphic card aesthetic.',
-      image: 'assets/img/projects-5.png',
-      secondaryImage: 'assets/img/login-signup.png',
+      image: 'assets/img/projects-5.jpg',
+      secondaryImage: 'assets/img/projects-5.jpg',
       liveUrl: 'https://login-sign-up-form-mu.vercel.app/',
       githubUrl: 'https://github.com/tusr23/Login-Sign-Up-Form',
       problem: 'Clunky forms with page reloads, poor error feedback, unmasked password frustration, and weak password validation create high bounce rates and security vulnerabilities.',
@@ -931,8 +933,8 @@ function calculateStrength(pass) {
       eyebrowIcon: 'ri-shopping-cart-2-line',
       eyebrow: 'E-COMMERCE SYSTEM • CART STATE ARCHITECTURE',
       description: 'A high-performance e-commerce web storefront inspired by Amazon. Engineered with dynamic product catalog filtering, real-time cart computations, responsive delivery estimation, and resilient local storage state persistence.',
-      image: 'assets/img/projects-6.png',
-      secondaryImage: 'assets/img/amazon-clone.png',
+      image: 'assets/img/projects-6.jpg',
+      secondaryImage: 'assets/img/projects-6.jpg',
       liveUrl: 'https://amazon-clone-weld-three-16.vercel.app/',
       githubUrl: 'https://github.com/tusr23/Amazon-Clone',
       problem: 'Modern e-commerce sites often suffer from heavy multi-megabyte bundle payloads, delayed cart synchronization, and fragile client state that vanishes on refresh.',
@@ -1014,8 +1016,8 @@ function updateCart(productId, delta) {
       eyebrowIcon: 'ri-spotify-line',
       eyebrow: 'AUDIO STREAMING • WEB AUDIO API ARCHITECTURE',
       description: 'A modern music streaming web application replicating the Spotify desktop & web player. Engineered with the HTML5 Web Audio API, real-time progress scrubbing, dynamic playlist queueing, visualizer animations, and an authentic dark glassmorphism interface.',
-      image: 'assets/img/projects-7.png',
-      secondaryImage: 'assets/img/spotify-clone.png',
+      image: 'assets/img/projects-7.jpg',
+      secondaryImage: 'assets/img/projects-7.jpg',
       liveUrl: 'https://spotify-clone-gules-tau.vercel.app/',
       githubUrl: 'https://github.com/tusr23/Spotify-Clone',
       problem: 'Web audio players struggle with choppy playback progress bars, lack of system media key integration, slow track switching, and audio context memory leaks.',

@@ -5,10 +5,14 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+   <!--=============== PRELOAD CRITICAL HERO IMAGE ===============-->
+   <link rel="preload" as="image" href="assets/img/tushar-perfil.png" fetchpriority="high">
+
    <!--=============== FAVICON ===============-->
    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
    <!--=============== REMIXICONS ===============-->
+   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 
    <!--=============== CSS ===============-->
@@ -69,7 +73,7 @@
             <!-- Center Image Profile -->
             <div class="home__image-container">
                <div class="home__blob"></div>
-               <img src="assets/img/tushar-perfil.png" alt="Tushar Patel" class="home__img">
+               <img src="assets/img/tushar-perfil.png" alt="Tushar Patel" class="home__img" fetchpriority="high" decoding="async">
             </div>
 
             <!-- Right Info -->
@@ -112,7 +116,7 @@
          <div class="about__container container grid">
             <div class="about__image-container">
                <div class="blob about__blob"></div>
-               <img src="assets/img/tushar-about.png" alt="About Tushar" class="about__img">
+               <img src="assets/img/tushar-about.png" alt="About Tushar" class="about__img" loading="lazy" decoding="async">
             </div>
 
             <div class="about__data">
@@ -155,7 +159,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-1.png" alt="Modern Analog Clock" class="projects__img">
+                     <img src="assets/img/projects-1.jpg" alt="Modern Analog Clock" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
 
@@ -175,7 +179,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-2.png" alt="TaskMaster Smart Task Manager" class="projects__img">
+                     <img src="assets/img/projects-2.jpg" alt="TaskMaster Smart Task Manager" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
 
@@ -195,7 +199,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-3.png" alt="Digital Scientific Calculator" class="projects__img">
+                     <img src="assets/img/projects-3.jpg" alt="Digital Scientific Calculator" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
 
@@ -216,7 +220,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-4.png" alt="Precision Stopwatch" class="projects__img">
+                     <img src="assets/img/projects-4.jpg" alt="Precision Stopwatch" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
 
@@ -237,7 +241,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-5.png" alt="Modern Login and Sign Up Form" class="projects__img">
+                     <img src="assets/img/projects-5.jpg" alt="Modern Login and Sign Up Form" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
 
@@ -257,7 +261,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-6.png" alt="Amazon Clone E-Commerce Store" class="projects__img">
+                     <img src="assets/img/projects-6.jpg" alt="Amazon Clone E-Commerce Store" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
 
@@ -277,7 +281,7 @@
                   </div>
 
                   <div class="projects__image-wrapper">
-                     <img src="assets/img/projects-7.png" alt="Spotify Web Player Clone" class="projects__img">
+                     <img src="assets/img/projects-7.jpg" alt="Spotify Web Player Clone" class="projects__img" loading="lazy" decoding="async">
                   </div>
                </a>
             </div>
@@ -745,8 +749,8 @@
                <article class="projects__modal-card" data-category="web" style="--card-index: 1;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-1.png" alt="Modern Analog Clock" class="projects__modal-img"
-                        loading="lazy">
+                     <img src="assets/img/projects-1.jpg" alt="Modern Analog Clock" class="projects__modal-img"
+                        loading="lazy" decoding="async">
                      <span class="projects__modal-badge">Web</span>
                      <span class="projects__modal-number">01</span>
                   </div>
@@ -783,8 +787,8 @@
                <article class="projects__modal-card" data-category="app" style="--card-index: 2;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-2.png" alt="TaskMaster Smart Task Manager"
-                        class="projects__modal-img" loading="lazy">
+                     <img src="assets/img/projects-2.jpg" alt="TaskMaster Smart Task Manager"
+                        class="projects__modal-img" loading="lazy" decoding="async">
                      <span class="projects__modal-badge">App</span>
                      <span class="projects__modal-number">02</span>
                   </div>
@@ -821,8 +825,8 @@
                <article class="projects__modal-card" data-category="web" style="--card-index: 3;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-3.png" alt="Digital Scientific Calculator"
-                        class="projects__modal-img" loading="lazy">
+                     <img src="assets/img/projects-3.jpg" alt="Digital Scientific Calculator"
+                        class="projects__modal-img" loading="lazy" decoding="async">
                      <span class="projects__modal-badge">Web</span>
                      <span class="projects__modal-number">03</span>
                   </div>
@@ -859,8 +863,8 @@
                <article class="projects__modal-card" data-category="app" style="--card-index: 4;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-4.png" alt="Precision Stopwatch" class="projects__modal-img"
-                        loading="lazy">
+                     <img src="assets/img/projects-4.jpg" alt="Precision Stopwatch" class="projects__modal-img"
+                        loading="lazy" decoding="async">
                      <span class="projects__modal-badge">App</span>
                      <span class="projects__modal-number">04</span>
                   </div>
@@ -897,8 +901,8 @@
                <article class="projects__modal-card" data-category="web" style="--card-index: 5;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-5.png" alt="Modern Login &amp; Sign Up Form"
-                        class="projects__modal-img" loading="lazy">
+                     <img src="assets/img/projects-5.jpg" alt="Modern Login &amp; Sign Up Form"
+                        class="projects__modal-img" loading="lazy" decoding="async">
                      <span class="projects__modal-badge">Web</span>
                      <span class="projects__modal-number">05</span>
                   </div>
@@ -935,8 +939,8 @@
                <article class="projects__modal-card" data-category="web" style="--card-index: 6;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-6.png" alt="Amazon Clone E-Commerce Store"
-                        class="projects__modal-img" loading="lazy">
+                     <img src="assets/img/projects-6.jpg" alt="Amazon Clone E-Commerce Store"
+                        class="projects__modal-img" loading="lazy" decoding="async">
                      <span class="projects__modal-badge">Web</span>
                      <span class="projects__modal-number">06</span>
                   </div>
@@ -973,8 +977,8 @@
                <article class="projects__modal-card" data-category="web" style="--card-index: 7;">
                   <div class="home__blob"></div>
                   <div class="projects__modal-img-wrap">
-                     <img src="assets/img/projects-7.png" alt="Spotify Web Player Clone" class="projects__modal-img"
-                        loading="lazy">
+                     <img src="assets/img/projects-7.jpg" alt="Spotify Web Player Clone" class="projects__modal-img"
+                        loading="lazy" decoding="async">
                      <span class="projects__modal-badge">Web</span>
                      <span class="projects__modal-number">07</span>
                   </div>

@@ -154,6 +154,8 @@ img {
   border-radius: 50%;
   filter: blur(60px);
   pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
   z-index: 0;
 }
 
@@ -208,14 +210,10 @@ img {
   left: 0;
   top: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%);
   opacity: 0;
-  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-    height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-    border-color 0.25s ease,
-    background-color 0.25s ease,
-    opacity 0.3s ease,
-    transform 0.15s ease;
+  will-change: transform;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  transition: opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
   z-index: var(--z-cursor);
   box-shadow: 0 0 12px hsla(var(--hue), 70%, 64%, 0.35);
 }
@@ -229,10 +227,11 @@ img {
   left: 0;
   top: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%);
   opacity: 0;
+  will-change: transform;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
   z-index: var(--z-cursor);
-  transition: opacity 0.3s ease, transform 0.15s ease;
+  transition: opacity 0.25s ease;
 }
 
 .cursor.visible,
@@ -241,20 +240,13 @@ img {
 }
 
 .cursor.hovered {
-  width: 52px;
-  height: 52px;
   background-color: hsla(var(--hue), 70%, 64%, 0.18);
   border-color: var(--first-color-light);
   box-shadow: 0 0 18px hsla(var(--hue), 70%, 64%, 0.45);
 }
 
 .cursor.clicking {
-  transform: translate(-50%, -50%) scale(0.85);
   background-color: hsla(var(--hue), 70%, 64%, 0.25);
-}
-
-.cursor-dot.clicking {
-  transform: translate(-50%, -50%) scale(1.4);
 }
 
 /*=============== HEADER & NAV ===============*/
@@ -445,6 +437,19 @@ img {
   height: 100%;
   max-width: 460px;
   z-index: 1;
+  animation: heroImageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes heroImageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .home__blob {
@@ -453,10 +458,11 @@ img {
   height: 320px;
   top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   background: radial-gradient(circle, hsla(var(--hue), 85%, 60%, 0.9) 0%, hsla(var(--hue), 75%, 50%, 0.35) 55%, transparent 75%);
   border-radius: 50%;
   filter: blur(35px);
+  will-change: transform;
   z-index: 1;
 }
 
