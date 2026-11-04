@@ -1092,10 +1092,215 @@ if ('mediaSession' in navigator) {
             solution: 'Interpolated progress with requestAnimationFrame for buttery 60 FPS motion.'
          }
       ]
+   },
+   'taskflow': {
+      id: 'taskflow',
+      number: '08',
+      category: 'App',
+      title: 'TaskFlow — Modern To-Do SaaS',
+      version: 'v1.0',
+      eyebrowIcon: 'ri-checkbox-circle-line',
+      eyebrow: 'PRODUCTIVITY • REACT & TAILWIND CSS ARCHITECTURE',
+      description: 'A modern, responsive Task Management SaaS application built with React.js, Tailwind CSS, and Lucide React. Engineered with complete CRUD task operations, dynamic status & priority workflows, debounced search, multi-field sorting, pagination, and an interactive KPI analytics dashboard with zero backend dependencies.',
+      image: 'assets/img/projects-8.jpg',
+      secondaryImage: 'assets/img/projects-8.jpg',
+      liveUrl: 'https://to-do-nine-ochre.vercel.app/',
+      githubUrl: 'https://github.com/tusr23/To-Do',
+      problem: 'Traditional to-do apps either force users through slow sign-up walls, lack essential sorting and pagination for large task lists, or deliver clunky UI experiences with sluggish re-renders and no visual prioritization.',
+      solutionTitle: 'Client-Side Reactive Task Architecture',
+      solution: 'Engineered a standalone, frictionless Task Management SaaS powered by React state, Lucide icons, and Tailwind CSS. Features instant local persistence, real-time debounced search, custom filtering by status/priority, dynamic multi-field sorting, pagination, and automated overdue tracking.',
+      features: [
+         {
+            icon: 'ri-dashboard-line',
+            title: 'Interactive Analytics Dashboard',
+            desc: 'Real-time KPI metrics displaying total, pending, in-progress, completed, and overdue task counts with visual progress tracking.'
+         },
+         {
+            icon: 'ri-task-line',
+            title: 'Complete Task Lifecycle (CRUD)',
+            desc: 'Create, inspect, edit, and delete tasks with custom titles, descriptions, due dates, status, and priority levels.'
+         },
+         {
+            icon: 'ri-filter-3-line',
+            title: 'Advanced Search & Multi-Field Sorting',
+            desc: 'Debounced real-time search combined with multi-parameter sorting by creation date, due date, priority rank, or title.'
+         },
+         {
+            icon: 'ri-pages-line',
+            title: 'Dynamic Pagination & URL Sync',
+            desc: 'Smooth client-side pagination with record counters and URL search parameter synchronization for shareable state.'
+         }
+      ],
+      codeFilename: 'taskService.js',
+      codeSnippet: `// LocalStorage CRUD & Multi-Field Sorting Engine
+export const taskService = {
+  async getTasks({ status, priority, search, sortBy = 'createdAt', order = 'desc', page = 1, limit = 10 } = {}) {
+    let filtered = getAllStoredTasks();
+
+    if (status && status !== 'All') filtered = filtered.filter(t => t.status === status);
+    if (priority && priority !== 'All') filtered = filtered.filter(t => t.priority === priority);
+    if (search?.trim()) {
+      const q = search.trim().toLowerCase();
+      filtered = filtered.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q));
+    }
+
+    // Dynamic Multi-Field Sorting
+    const isAsc = order.toLowerCase() === 'asc';
+    filtered.sort((a, b) => {
+      if (sortBy === 'priority') {
+        const rank = { High: 3, Medium: 2, Low: 1 };
+        return isAsc ? (rank[a.priority] || 2) - (rank[b.priority] || 2) : (rank[b.priority] || 2) - (rank[a.priority] || 2);
+      }
+      const timeA = new Date(a[sortBy] || 0).getTime();
+      const timeB = new Date(b[sortBy] || 0).getTime();
+      return isAsc ? timeA - timeB : timeB - timeA;
+    });
+
+    const totalTasks = filtered.length;
+    const paginated = filtered.slice((page - 1) * limit, page * limit);
+    return { tasks: paginated, pagination: { page, totalTasks, totalPages: Math.ceil(totalTasks / limit) } };
+  }
+};`,
+      archPoints: [
+         {
+            title: 'Client-Side Service Layer',
+            desc: 'Centralized task service abstraction decoupling business logic and localStorage serialization from React components.'
+         },
+         {
+            title: 'Reactive Debounced Queries',
+            desc: 'Custom useDebounce hook prevents unneeded re-filtering passes during rapid keystrokes in search.'
+         },
+         {
+            title: 'State & Toast Notification Bus',
+            desc: 'Context-driven toast notification system providing feedback for task creation, status updates, and deletions.'
+         }
+      ],
+      metrics: [
+         { val: '100%', label: 'Client-Side Standalone' },
+         { val: '< 50ms', label: 'Filter & Search Response' },
+         { val: '0', label: 'Login Friction (Instant Access)' },
+         { val: '100', label: 'Responsive Mobile Score' }
+      ],
+      challenges: [
+         {
+            title: 'Multi-Criteria Sorting & Priority Ranking',
+            desc: 'Sorting text titles, calendar timestamps, and non-numeric priority categories (High, Medium, Low) required consistent custom comparator logic.',
+            solution: 'Implemented dedicated comparison branches in the sort pipeline with priority rank mapping and fallback timestamp normalization.'
+         },
+         {
+            title: 'URL Query Param State Synchronization',
+            desc: 'Keeping filters, pagination, and active view states consistent with browser history without triggering redundant re-renders.',
+            solution: 'Synced filter changes to React Router useSearchParams with debounced updates, enabling seamless browser back/forward navigation.'
+         }
+      ]
+   },
+   'twinmarket': {
+      id: 'twinmarket',
+      number: '09',
+      category: 'Web',
+      title: 'TwinMarket AI — Business Simulation & Intelligence',
+      version: 'v1.0',
+      eyebrowIcon: 'ri-line-chart-line',
+      eyebrow: 'MARKET INTELLIGENCE • REACT & MICROECONOMIC SIMULATION',
+      description: 'An advanced client-side business simulation and market intelligence web platform built with React, Tailwind CSS, Recharts, and Framer Motion. Synthesizes virtual enterprises across 7 industries, stress-tests dynamic pricing elasticity, battles game-theoretic AI rivals, maps 5x5 enterprise risk heatmaps, and runs real-world macroeconomic crisis scenarios.',
+      image: 'assets/img/projects-9.jpg',
+      secondaryImage: 'assets/img/projects-9.jpg',
+      liveUrl: 'https://twin-market.vercel.app',
+      githubUrl: 'https://github.com/tusr23/TwinMarket',
+      problem: 'Entrepreneurs and students lack accessible, visual sandbox platforms to experiment with pricing elasticity, competitor reactions, and supply chain shocks without risking capital or getting bogged down by complicated financial software.',
+      solutionTitle: 'Explainable Microeconomic Simulation Engine',
+      solution: 'Built a responsive simulation suite modeling multi-factor customer demand elasticity, rival reaction heuristics, inventory buffer turnover, and 5x5 enterprise risk matrices entirely in the client browser with zero latency and interactive Recharts visualizations.',
+      features: [
+         {
+            icon: 'ri-dashboard-2-line',
+            title: 'Executive KPI Dashboard',
+            desc: 'Tracks revenue, net profit margins, demand capacity ratios, 100% normalized market share pools, and business health scores.'
+         },
+         {
+            icon: 'ri-price-tag-3-line',
+            title: 'Dynamic Pricing Elasticity Lab',
+            desc: 'Interactive price sliders with unit contribution calculations, before/after comparative charts, and ±30% revenue elasticity curves.'
+         },
+         {
+            icon: 'ri-shield-cross-line',
+            title: 'Game-Theoretic Rival Simulator',
+            desc: 'Models 3–5 intelligent competitors with strategy archetypes that react with price wars, counter-promotions, and ad blitzes.'
+         },
+         {
+            icon: 'ri-fire-line',
+            title: 'Market Shock Stress Testing',
+            desc: 'Simulate 8 real-world macroeconomic disruptions including supply chain bottlenecks, tariff spikes, viral trends, and demand booms.'
+         }
+      ],
+      codeFilename: 'demandEngine.js',
+      codeSnippet: `// Multi-Factor Microeconomic Demand Elasticity Engine
+export function calculateSimulatedDemand({
+  baseDemand,
+  priceDeltaPercent,
+  pedElasticity = -1.45,
+  competitorAttractiveness = 1.0,
+  marketingBudget = 0,
+  seasonalityIndex = 1.0,
+  scenarioMultiplier = 1.0
+}) {
+  // Price Elasticity of Demand: (1 + %ΔP)^PED
+  const priceMultiplier = Math.max(0.1, Math.pow(1 + priceDeltaPercent, pedElasticity));
+  
+  // Logarithmic Diminishing Returns for Marketing Spend
+  const marketingMultiplier = 1 + (0.35 * Math.log10(1 + (marketingBudget / 500)));
+
+  // Composite Effective Customer Demand Calculation
+  const totalDemand = baseDemand 
+    * priceMultiplier 
+    * competitorAttractiveness 
+    * marketingMultiplier 
+    * seasonalityIndex 
+    * scenarioMultiplier;
+
+  return Math.round(Math.max(0, totalDemand));
+}`,
+      archPoints: [
+         {
+            title: 'Client-Side Microeconomic Modeling',
+            desc: 'Pure mathematical simulation pipeline delivering instant what-if recalculations across complex formulas without server roundtrips.'
+         },
+         {
+            title: 'Reactive Recharts Data Visualization',
+            desc: 'Multi-horizon trajectory graphs, demand vs capacity bars, and radar benchmarks optimized with clean component memoization.'
+         },
+         {
+            title: 'Deterministic State & Scenario Branching',
+            desc: 'Isolated baseline vs scenario state buffers allow non-destructive risk testing and instant commit to live store storage.'
+         }
+      ],
+      metrics: [
+         { val: '8+', label: 'Macro Shock Scenarios' },
+         { val: '7', label: 'Simulated Industries' },
+         { val: '< 16ms', label: 'Elasticity Re-render' },
+         { val: '100%', label: 'Client-Side Privacy' }
+      ],
+      challenges: [
+         {
+            title: 'Nonlinear Demand Feedback Loops',
+            desc: 'Balancing Price Elasticity of Demand (PED) with rival game theory to prevent negative demand or unrealistic runaway exponential revenue.',
+            solution: 'Bound elasticity inputs within realistic microeconomic damping clamps and logarithmic marketing expansion thresholds.'
+         },
+         {
+            title: 'Complex Multi-Dataset Chart Synchronization',
+            desc: 'Synchronizing historical financial actuals with forward-looking projected trajectories across multiple time horizons.',
+            solution: 'Structured unified data projections with seamless tooltip interpolation and visual distinction for forecasted periods.'
+         }
+      ]
    }
 };
 
-const projectOrder = ['analog-clock', 'taskmaster', 'calculator', 'stopwatch', 'login-signup', 'amazon-clone', 'spotify-clone'];
+// Aliases for convenience
+caseStudiesData['to-do'] = caseStudiesData['taskflow'];
+caseStudiesData['todo'] = caseStudiesData['taskflow'];
+caseStudiesData['twin-market'] = caseStudiesData['twinmarket'];
+caseStudiesData['twin_market'] = caseStudiesData['twinmarket'];
+
+const projectOrder = ['analog-clock', 'taskmaster', 'calculator', 'stopwatch', 'login-signup', 'amazon-clone', 'spotify-clone', 'taskflow', 'twinmarket'];
 
 function escapeHtml(str) {
    if (!str) return '';
@@ -1122,11 +1327,11 @@ function renderStandaloneCaseStudy(projectId) {
       document.title = `${p.title} — Case Study | Tushar Patel`;
 
       const currentIndex = projectOrder.indexOf(projectId);
-      const prevIndex = (currentIndex - 1 + projectOrder.length) % projectOrder.length;
-      const nextIndex = (currentIndex + 1) % projectOrder.length;
+      const isFirst = currentIndex === 0;
+      const isLast = currentIndex === projectOrder.length - 1;
 
-      const prevProj = caseStudiesData[projectOrder[prevIndex]];
-      const nextProj = caseStudiesData[projectOrder[nextIndex]];
+      const prevProj = !isFirst ? caseStudiesData[projectOrder[currentIndex - 1]] : null;
+      const nextProj = !isLast ? caseStudiesData[projectOrder[currentIndex + 1]] : null;
 
       caseStudyView.innerHTML = `
       <!-- Ambient Glowing Background Elements -->
@@ -1352,6 +1557,17 @@ function renderStandaloneCaseStudy(projectId) {
                <!-- CASE STUDY FOOTER / NAVIGATION -->
                <footer class="case-footer">
                   <div class="case-footer__nav">
+                     ${isFirst ? `
+                     <a href="index.html?gallery=all#projects" class="case-nav-btn case-nav-btn--prev case-nav-btn--gallery" id="case-gallery-btn" aria-label="Go to Showcase Gallery">
+                        <div class="case-nav-btn__icon">
+                           <i class="ri-layout-grid-line"></i>
+                        </div>
+                        <div class="case-nav-btn__content">
+                           <span class="case-nav-btn__label">Showcase Gallery</span>
+                           <h3 class="case-nav-btn__title">All Projects</h3>
+                        </div>
+                     </a>
+                     ` : `
                      <a href="index.html?project=${prevProj.id}" class="case-nav-btn case-nav-btn--prev">
                         <div class="case-nav-btn__icon">
                            <i class="ri-arrow-left-line"></i>
@@ -1361,7 +1577,19 @@ function renderStandaloneCaseStudy(projectId) {
                            <h3 class="case-nav-btn__title">${prevProj.title}</h3>
                         </div>
                      </a>
+                     `}
 
+                     ${isLast ? `
+                     <a href="index.html?gallery=all#projects" class="case-nav-btn case-nav-btn--next case-nav-btn--gallery" id="case-gallery-btn" aria-label="Go to Showcase Gallery">
+                        <div class="case-nav-btn__content">
+                           <span class="case-nav-btn__label">Showcase Gallery</span>
+                           <h3 class="case-nav-btn__title">All Projects</h3>
+                        </div>
+                        <div class="case-nav-btn__icon">
+                           <i class="ri-layout-grid-line"></i>
+                        </div>
+                     </a>
+                     ` : `
                      <a href="index.html?project=${nextProj.id}" class="case-nav-btn case-nav-btn--next">
                         <div class="case-nav-btn__content">
                            <span class="case-nav-btn__label">Next Project</span>
@@ -1371,6 +1599,7 @@ function renderStandaloneCaseStudy(projectId) {
                            <i class="ri-arrow-right-line"></i>
                         </div>
                      </a>
+                     `}
                   </div>
                </footer>
             </div>
@@ -1379,6 +1608,57 @@ function renderStandaloneCaseStudy(projectId) {
    `;
 
       window.scrollTo(0, 0);
+
+      // Attach click events to navigate back to gallery/projects smoothly
+      const galleryBtn = document.getElementById('case-gallery-btn');
+      if (galleryBtn) {
+         galleryBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            history.pushState(null, '', 'index.html#projects');
+            if (caseStudyView) {
+               caseStudyView.style.display = 'none';
+               caseStudyView.innerHTML = '';
+            }
+            if (portfolioView) {
+               portfolioView.style.display = 'block';
+            }
+            document.body.classList.remove('case-study-page');
+            document.title = 'Tushar Patel — Creative Full Stack Developer';
+
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+               projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            const projectsModal = document.getElementById('projects-modal');
+            if (projectsModal) {
+               projectsModal.classList.add('projects__modal--open');
+               projectsModal.setAttribute('aria-hidden', 'false');
+               document.body.style.overflow = 'hidden';
+            }
+         });
+      }
+
+      const backBtn = document.getElementById('case-back-btn');
+      if (backBtn) {
+         backBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            history.pushState(null, '', 'index.html#projects');
+            if (caseStudyView) {
+               caseStudyView.style.display = 'none';
+               caseStudyView.innerHTML = '';
+            }
+            if (portfolioView) {
+               portfolioView.style.display = 'block';
+            }
+            document.body.classList.remove('case-study-page');
+            document.title = 'Tushar Patel — Creative Full Stack Developer';
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+               projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+         });
+      }
 
       // Initialize ScrollSpy for Directory
       initCaseStudyScrollSpy();
@@ -1442,6 +1722,19 @@ function initPageRouter() {
       }
       document.body.classList.remove('case-study-page');
       document.title = 'Tushar Patel — Creative Full Stack Developer';
+
+      // Open showcase gallery modal if requested via URL param or hash
+      const cleanHash = window.location.hash.replace(/^#/, '');
+      if (urlParams.get('gallery') === 'all' || cleanHash === 'gallery' || cleanHash === 'all-projects') {
+         setTimeout(() => {
+            const projectsModal = document.getElementById('projects-modal');
+            if (projectsModal) {
+               projectsModal.classList.add('projects__modal--open');
+               projectsModal.setAttribute('aria-hidden', 'false');
+               document.body.style.overflow = 'hidden';
+            }
+         }, 120);
+      }
    }
 }
 

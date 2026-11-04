@@ -2044,6 +2044,29 @@ body.case-study-page {
   transform: translateX(5px);
 }
 
+.case-nav-btn--gallery {
+  border-color: hsla(var(--hue), 80%, 65%, 0.35);
+  background: linear-gradient(135deg, hsla(var(--hue), 70%, 55%, 0.12), rgba(10, 10, 20, 0.95));
+}
+
+.case-nav-btn--gallery .case-nav-btn__icon {
+  background: hsla(var(--hue), 75%, 60%, 0.22);
+  border-color: var(--first-color-light);
+  color: var(--first-color-light);
+}
+
+.case-nav-btn--gallery:hover {
+  border-color: var(--first-color);
+  box-shadow: 0 12px 35px var(--first-color-glow);
+}
+
+.case-nav-btn--gallery:hover .case-nav-btn__icon {
+  background: var(--first-color);
+  color: #ffffff;
+  transform: scale(1.12);
+  box-shadow: 0 0 20px var(--first-color-glow);
+}
+
 /*==================== RESPONSIVE BREAKPOINTS ====================*/
 @media screen and (max-width: 1024px) {
   .case-layout {
