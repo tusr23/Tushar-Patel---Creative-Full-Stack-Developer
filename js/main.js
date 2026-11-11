@@ -1326,12 +1326,13 @@ function renderStandaloneCaseStudy(projectId) {
       document.body.classList.add('case-study-page');
       document.title = `${p.title} — Case Study | Tushar Patel`;
 
-      const currentIndex = projectOrder.indexOf(projectId);
-      const isFirst = currentIndex === 0;
-      const isLast = currentIndex === projectOrder.length - 1;
+      const canonicalId = p.id || projectId;
+      const currentIndex = projectOrder.indexOf(canonicalId);
+      const isFirst = currentIndex <= 0;
+      const isLast = currentIndex === -1 || currentIndex >= projectOrder.length - 1;
 
-      const prevProj = !isFirst ? caseStudiesData[projectOrder[currentIndex - 1]] : null;
-      const nextProj = !isLast ? caseStudiesData[projectOrder[currentIndex + 1]] : null;
+      const prevProj = (!isFirst && currentIndex > 0) ? caseStudiesData[projectOrder[currentIndex - 1]] : null;
+      const nextProj = (!isLast && currentIndex >= 0 && currentIndex < projectOrder.length - 1) ? caseStudiesData[projectOrder[currentIndex + 1]] : null;
 
       caseStudyView.innerHTML = `
       <!-- Ambient Glowing Background Elements -->
@@ -1558,7 +1559,7 @@ function renderStandaloneCaseStudy(projectId) {
                <footer class="case-footer">
                   <div class="case-footer__nav">
                      ${isFirst ? `
-                     <a href="index.html?gallery=all#projects" class="case-nav-btn case-nav-btn--prev case-nav-btn--gallery" id="case-gallery-btn" aria-label="Go to Showcase Gallery">
+                     <a href="#projects" class="case-nav-btn case-nav-btn--prev case-nav-btn--gallery" id="case-gallery-btn" aria-label="Go to Showcase Gallery">
                         <div class="case-nav-btn__icon">
                            <i class="ri-layout-grid-line"></i>
                         </div>
@@ -1568,7 +1569,7 @@ function renderStandaloneCaseStudy(projectId) {
                         </div>
                      </a>
                      ` : `
-                     <a href="index.html?project=${prevProj.id}" class="case-nav-btn case-nav-btn--prev">
+                     <a href="#project-${prevProj.id}" data-project="${prevProj.id}" class="case-nav-btn case-nav-btn--prev">
                         <div class="case-nav-btn__icon">
                            <i class="ri-arrow-left-line"></i>
                         </div>
@@ -1580,7 +1581,7 @@ function renderStandaloneCaseStudy(projectId) {
                      `}
 
                      ${isLast ? `
-                     <a href="index.html?gallery=all#projects" class="case-nav-btn case-nav-btn--next case-nav-btn--gallery" id="case-gallery-btn" aria-label="Go to Showcase Gallery">
+                     <a href="#projects" class="case-nav-btn case-nav-btn--next case-nav-btn--gallery" id="case-gallery-btn" aria-label="Go to Showcase Gallery">
                         <div class="case-nav-btn__content">
                            <span class="case-nav-btn__label">Showcase Gallery</span>
                            <h3 class="case-nav-btn__title">All Projects</h3>
@@ -1590,7 +1591,7 @@ function renderStandaloneCaseStudy(projectId) {
                         </div>
                      </a>
                      ` : `
-                     <a href="index.html?project=${nextProj.id}" class="case-nav-btn case-nav-btn--next">
+                     <a href="#project-${nextProj.id}" data-project="${nextProj.id}" class="case-nav-btn case-nav-btn--next">
                         <div class="case-nav-btn__content">
                            <span class="case-nav-btn__label">Next Project</span>
                            <h3 class="case-nav-btn__title">${nextProj.title}</h3>
@@ -1614,28 +1615,7 @@ function renderStandaloneCaseStudy(projectId) {
       if (galleryBtn) {
          galleryBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            history.pushState(null, '', 'index.html#projects');
-            if (caseStudyView) {
-               caseStudyView.style.display = 'none';
-               caseStudyView.innerHTML = '';
-            }
-            if (portfolioView) {
-               portfolioView.style.display = 'block';
-            }
-            document.body.classList.remove('case-study-page');
-            document.title = 'Tushar Patel — Creative Full Stack Developer';
-
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-               projectsSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            const projectsModal = document.getElementById('projects-modal');
-            if (projectsModal) {
-               projectsModal.classList.add('projects__modal--open');
-               projectsModal.setAttribute('aria-hidden', 'false');
-               document.body.style.overflow = 'hidden';
-            }
+            closeProjectDetails(true);
          });
       }
 
@@ -1643,20 +1623,7 @@ function renderStandaloneCaseStudy(projectId) {
       if (backBtn) {
          backBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            history.pushState(null, '', 'index.html#projects');
-            if (caseStudyView) {
-               caseStudyView.style.display = 'none';
-               caseStudyView.innerHTML = '';
-            }
-            if (portfolioView) {
-               portfolioView.style.display = 'block';
-            }
-            document.body.classList.remove('case-study-page');
-            document.title = 'Tushar Patel — Creative Full Stack Developer';
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-               projectsSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            closeProjectDetails(false);
          });
       }
 
@@ -1693,6 +1660,113 @@ function initCaseStudyScrollSpy() {
    }, { passive: true });
 }
 
+/*==================== PROJECT DETAILS DIRECT OPEN / CLOSE / ROUTER ====================*/
+function openProjectDetails(projectId, updateHistory = true) {
+   if (!projectId) return;
+   const p = caseStudiesData[projectId];
+   if (!p) return;
+   const canonicalId = p.id || projectId;
+
+   // Close All Projects modal if currently open
+   const projectsModal = document.getElementById('projects-modal');
+   if (projectsModal && projectsModal.classList.contains('projects__modal--open')) {
+      projectsModal.classList.remove('projects__modal--open');
+      projectsModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+   }
+
+   renderStandaloneCaseStudy(canonicalId);
+
+   if (updateHistory) {
+      try {
+         history.pushState({ project: canonicalId }, '', `#project-${canonicalId}`);
+      } catch (e) {
+         window.location.hash = `project-${canonicalId}`;
+      }
+   }
+}
+
+function closeProjectDetails(openGallery = false) {
+   const caseStudyView = document.getElementById('case-study-view');
+   const portfolioView = document.getElementById('portfolio-view');
+   if (caseStudyView) {
+      caseStudyView.style.display = 'none';
+      caseStudyView.innerHTML = '';
+   }
+   if (portfolioView) {
+      portfolioView.style.display = 'block';
+   }
+   document.body.classList.remove('case-study-page');
+   document.title = 'Tushar Patel — Creative Full Stack Developer';
+
+   try {
+      history.pushState(null, '', window.location.pathname + '#projects');
+   } catch (e) {
+      window.location.hash = 'projects';
+   }
+
+   const projectsSection = document.getElementById('projects');
+   if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+   }
+
+   if (openGallery) {
+      const projectsModal = document.getElementById('projects-modal');
+      if (projectsModal) {
+         projectsModal.classList.add('projects__modal--open');
+         projectsModal.setAttribute('aria-hidden', 'false');
+         document.body.style.overflow = 'hidden';
+      }
+   }
+}
+
+// Global Click Interceptor for Instant Project Details Navigation
+document.addEventListener('click', (e) => {
+   // Skip modifier keys or middle clicks to allow opening in new tab if user explicitly chooses
+   if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+
+   // 1. Project cards in the marquee track
+   const card = e.target.closest('.projects__card');
+   if (card) {
+      const id = card.getAttribute('data-project');
+      if (id && caseStudiesData[id]) {
+         e.preventDefault();
+         openProjectDetails(id);
+         return;
+      }
+   }
+
+   // 2. Case study buttons in the All Projects popup modal
+   const modalAction = e.target.closest('.projects__modal-action');
+   if (modalAction && modalAction.textContent.includes('Case Study')) {
+      const id = modalAction.getAttribute('data-project');
+      if (id && caseStudiesData[id]) {
+         e.preventDefault();
+         openProjectDetails(id);
+         return;
+      }
+   }
+
+   // 3. Next / Prev project navigation buttons at the bottom of case study
+   const navBtn = e.target.closest('.case-nav-btn');
+   if (navBtn && !navBtn.classList.contains('case-nav-btn--gallery')) {
+      const id = navBtn.getAttribute('data-project');
+      if (id && caseStudiesData[id]) {
+         e.preventDefault();
+         openProjectDetails(id);
+         return;
+      }
+   }
+
+   // 4. Case study brand logo / back button
+   const caseBrand = e.target.closest('.case__brand');
+   if (caseBrand) {
+      e.preventDefault();
+      closeProjectDetails(false);
+      return;
+   }
+});
+
 // Router for Standalone Case Study vs Homepage
 function initPageRouter() {
    const urlParams = new URLSearchParams(window.location.search);
@@ -1709,12 +1783,11 @@ function initPageRouter() {
       }
    }
 
-   const portfolioView = document.getElementById('portfolio-view');
-   const caseStudyView = document.getElementById('case-study-view');
-
    if (projectId && caseStudiesData[projectId]) {
-      renderStandaloneCaseStudy(projectId);
+      openProjectDetails(projectId, false);
    } else {
+      const portfolioView = document.getElementById('portfolio-view');
+      const caseStudyView = document.getElementById('case-study-view');
       if (portfolioView) portfolioView.style.display = 'block';
       if (caseStudyView) {
          caseStudyView.style.display = 'none';

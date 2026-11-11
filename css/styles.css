@@ -1446,6 +1446,10 @@ img {
 
 .work__tabs {
   display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
   background-color: var(--container-color);
   border: 1px solid var(--border-color);
   padding: 0.35rem;
